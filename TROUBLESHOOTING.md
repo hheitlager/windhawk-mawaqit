@@ -6,6 +6,8 @@ Start with the installed Windhawk version and the mod's current settings. This g
 
 Confirm your mosque ID or full Mawaqit URL is valid, the mosque publishes a schedule, and `mawaqit.net` is reachable. Verify your Windows date/time. The mod cannot invent missing Mawaqit schedule data. A valid local cache may continue working temporarily while offline.
 
+**Can’t find your mosque on Mawaqit?** Try [Google’s search for Mawaqit mosques near you](https://www.google.com/search?q=mawaqit+mosque+near+me), since Mawaqit does not currently have a convenient nearby-mosque search on its website. Open the relevant Mawaqit mosque page and copy its complete URL or the final URL segment (mosque ID) into **General → Mosque**. See the [configuration guide](CONFIGURATION.md#finding-your-mosque) for an example and screenshot. A Google result alone does not guarantee the mosque has a Mawaqit schedule.
+
 ## Clock missing or misplaced
 
 Confirm the mod is enabled, the relevant primary/secondary monitor toggle is on, and Explorer's taskbar is running. Try `before-tray` rather than experimental `center`. Crowded or customized taskbars can lack space; restart Explorer only if normal reload/recovery fails.
