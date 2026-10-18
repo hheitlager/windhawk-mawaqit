@@ -53,6 +53,14 @@ These are **source-defined palette colors**, not screenshots of every theme. Win
 
 The popup has six independent roles: `PopupBackground`, `PopupBorder`, `PopupText`, `PopupMuted`, `PopupRule` (divider lines), and `PopupFooter`. The pill and popup also have separate material/opacity controls; those change how colors appear on screen.
 
+## Light popup colors with Blur and Acrylic
+
+A light `PopupBackground` color (for example, an off-white or pale cream) can look **much brighter, washed out, or almost white** when the popup uses **Blur** or **Acrylic**. These Windows composition materials blend the popup tint with the content behind it, so the result may not match the exact `#RRGGBB` color you entered. The desktop wallpaper, nearby windows, and Windows appearance can also change how the tint looks.
+
+For a more predictable result, try **Solid** popup background mode. If you prefer Blur or Acrylic, try a **darker `PopupBackground` override** and adjust the available popup opacity setting to see which combination works best on your desktop. Increasing opacity may help in some configurations, but these effects do not guarantee an exact color match. This is expected material behavior rather than an indication that your hex value was rejected.
+
+See [Troubleshooting](TROUBLESHOOTING.md#light-popup-background-looks-white-or-washed-out) for a quick checklist.
+
 ## Mix and match
 
 1. Select any preset under **General → Theme**.

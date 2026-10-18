@@ -6,9 +6,7 @@ Start with the installed Windhawk version and the mod's current settings. This g
 
 Confirm your mosque ID or full Mawaqit URL is valid, the mosque publishes a schedule, and `mawaqit.net` is reachable. Verify your Windows date/time. The mod cannot invent missing Mawaqit schedule data. A valid local cache may continue working temporarily while offline.
 
-**Can’t find your mosque on Mawaqit?** Try [Google’s search for Mawaqit mosques near you](https://www.google.com/search?q=mawaqit+mosque+near+me), open the relevant Mawaqit mosque page and copy its complete URL or the final URL segment (mosque ID) into **General → Mosque**. See the [configuration guide](CONFIGURATION.md#finding-your-mosque) for an example and screenshot. A Google result alone does not guarantee the mosque has a Mawaqit schedule.
-
-![Where to find the mosque ID](screenshots/Mawaqit-Mosque-Identifier.png)
+**Can’t find your mosque on Mawaqit?** Try [Google’s search for Mawaqit mosques near you](https://www.google.com/search?q=mawaqit+mosque+near+me), since Mawaqit does not currently have a convenient nearby-mosque search on its website. Open the relevant Mawaqit mosque page and copy its complete URL or the final URL segment (mosque ID) into **General → Mosque**. See the [configuration guide](CONFIGURATION.md#finding-your-mosque) for an example and screenshot. A Google result alone does not guarantee the mosque has a Mawaqit schedule.
 
 ## Clock missing or misplaced
 
@@ -21,6 +19,18 @@ Check **Advanced → Popup appearance → Show popup**. If using hover mode, ins
 ## Colors don't match the selected theme
 
 Check **Advanced → Custom theme settings** for nonempty overrides. They apply to *all* presets in the development build. Clear a field to inherit its theme color. `PillIqamah` and `PillBorder` inherit the countdown accent when empty. Transparent/Blur/Acrylic material and opacity settings can affect perceived colors.
+
+## Light popup background looks white or washed out
+
+With **Blur** or **Acrylic** selected for the popup, a pale `PopupBackground` override may appear nearly white even when its hex value is valid. Windows blends the popup tint with what is behind it, so the displayed color is not necessarily the literal `#RRGGBB` value.
+
+To narrow it down:
+
+1. Temporarily switch the **popup** background style to **Solid**. If the color looks right, the difference is likely caused by the Windows backdrop effect.
+2. If you want to keep Blur or Acrylic, try a darker `PopupBackground` color and experiment with the popup opacity setting. The visible result can vary with the desktop background and windows behind the popup.
+3. Check **Advanced → Custom theme settings → PopupBackground** for a saved override. Clear it if you want to use the selected theme's default color instead.
+
+This behavior is a visual limitation of translucent Windows materials, not necessarily a theme parsing error. See [Themes & customization](THEMES.md#light-popup-colors-with-blur-and-acrylic).
 
 ## Iqamah missing or too small (v0.7.1 development)
 
