@@ -27,6 +27,7 @@ Bring your mosque’s prayer times to the **Windows 11 taskbar** with a live cou
 4. **Configure your mosque**.  Copy the full page URL or its mosque ID (the last part of the URL) into the mod's Mosque setting.
 
 ![Where to find the mosque ID](screenshots/Mawaqit-Mosque-Identifier.png)
+
 5. Pick a theme and preferred taskbar position. You're ready!
 
 ## Make it yours
