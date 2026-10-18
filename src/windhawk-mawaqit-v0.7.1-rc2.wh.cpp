@@ -10,102 +10,74 @@
 // @compilerOptions -lole32 -loleaut32 -lruntimeobject -lshell32 -luuid -lgdi32 -lwinhttp
 // ==/WindhawkMod==
 
+
 // ==WindhawkModReadme==
 /*
 # Mawaqit Prayer Clock
-Mawaqit prayer clock with live countdown, prayer schedule popup, and customizable themes.
 
+## Bring your daily prayer times to the Windows 11 taskbar.
+Mawaqit Prayer Clock displays the next prayer, its scheduled time, and a live countdown directly on your taskbar.
+Click the clock to view today's full prayer schedule, using prayer times published by your selected mosque on [Mawaqit](https://mawaqit.net).
 
 ## Features
-- Upcoming prayer name, scheduled time, and live countdown
-- Clickable or hover-opened prayer-schedule popup with taskbar slide animation and optional auto-close timer
-- 13 appearance themes, including Windows / System, Traditional Islamic, Catppuccin Mocha, Emberveil, Dracula, Nord, Gruvbox Dark, Tokyo Night, Solarized Dark and Light, and Custom
-- Independent custom colors for the pill and popup
-- Visibility switches for the prayer label, countdown, and popup
-- Five selectable taskbar positions, including experimental dynamic centering
-- Native XAML taskbar integration with reserved layout space for anchored positions
-- Automatic or manual clock height, four-sided margins and padding, tray gap, corner radius, and font size
-- Background schedule updates through native WinHTTP, with configurable refresh interval
-- Live settings updates without restarting Explorer
-
+- **Prayer times at a glance** - See the next prayer and how much time remains.
+- **Daily prayer schedule** - Click or hover over the clock to view today's prayer times.
+- **Personalize your clock** - Choose from 13 themes, customize colors, and adjust its appearance.
+- **Flexible taskbar placement** - Choose where the clock appears, including on multiple monitors.
+- **Customizable popup** - Adjust its appearance, transparency, and display options.
 
 ## Screenshots
-Mawaqit Prayer Clock supports multiple appearance themes to match your Windows 11 desktop.
+Choose a style that matches your Windows desktop.
 
-Windows System Default | Traditional Islamic |
+| Windows / System | Traditional Islamic |
 |:---:|:---:|
-![Windows](https://raw.githubusercontent.com/hheitlager/windhawk-mawaqit/main/screenshots/Mawaqit-Windows-System-Default.png) | ![Traditional](https://raw.githubusercontent.com/hheitlager/windhawk-mawaqit/main/screenshots/Mawaqit-Traditional-Islamic.png) |
+| ![Windows](https://raw.githubusercontent.com/hheitlager/windhawk-mawaqit/main/screenshots/Mawaqit-Windows-System-Default.png) | ![Traditional](https://raw.githubusercontent.com/hheitlager/windhawk-mawaqit/main/screenshots/Mawaqit-Traditional-Islamic.png) |
 
 | Catppuccin Mocha | Emberveil |
 |:---:|:---:|
 | ![Catppuccin](https://raw.githubusercontent.com/hheitlager/windhawk-mawaqit/main/screenshots/Mawaqit-Catppucchin-Moca.png) | ![Emberveil](https://raw.githubusercontent.com/hheitlager/windhawk-mawaqit/main/screenshots/Mawaqit-Emberveil.png) |
 
-
 ## Desktop Integration
-See how Mawaqit Prayer Clock integrates into a fully customized Windows 11 desktop.
+See how Mawaqit Prayer Clock looks on a customized Windows 11 desktop.
+
 ![Desktop](https://raw.githubusercontent.com/hheitlager/windhawk-mawaqit/main/screenshots/My-Desktop.png)
 
+## Getting Started
+**1. Find your mosque** 
 
-## Configuration
-- Choose a mosque identifier or Mawaqit URL in Settings.
-  Search for your nearby mosque via e.g. [Google](https://www.google.com/search?q=mawaqit+mosque+near+me). 
-  Accepted inputs include a bare mosque identifier and the full URL:
-![UrlExample](https://raw.githubusercontent.com/hheitlager/windhawk-mawaqit/main/screenshots/Mawaqit-Mosque-Identifier.png)
-- Select an appearance theme and customize the widget as desired.
-- Custom color fields optionally override individual colors in any theme; leave fields empty to inherit the selected palette.
-- Existing saved custom colors are treated as overrides after upgrading; clear unwanted values to restore theme defaults.
-- Set popup auto-close to 0 to keep the popup open until dismissed.
-- Optional hover opening uses a configurable mouse-leave delay (500 ms by default).
+Visit [Mawaqit](https://mawaqit.net) to find your mosque, or [search for one near you](https://www.google.com/search?q=mawaqit+mosque+near+me).
 
+**2. Add your mosque** Open the mod's settings in Windhawk and paste your mosque's full Mawaqit URL or its identifier into the **Mosque** field.
 
-## Taskbar positioning
-Unifies taskbar positioning under General. Position for primary and secondary
-monitors. Secondary center and after-icons use a non-layout-affecting overlay;
-before-icons reserves a real slot in the taskbar icon container.
-Unsupported tray anchors fall back to the known-working tray slot.
-Popup placement remains monitor-aware. The multi-monitor behavior has passed the author’s 26-check regression suite.
-Some positioning modes may be constrained by crowded or narrow taskbars.
+![Mawaqit URL and mosque identifier](https://raw.githubusercontent.com/hheitlager/windhawk-mawaqit/main/screenshots/Mawaqit-Mosque-Identifier.png)
 
+**3. Personalize your clock**
 
-## Network access and cached schedules
-This mod intentionally uses Mawaqit’s published mosque-specific prayer times rather
-than locally calculated astronomical times, preserving mosque-specific adjustments.
+Choose a theme, customize the appearance, and select your preferred taskbar position.
+That's it! Your prayer clock is ready.
 
-This mod connects to **https://mawaqit.net** over HTTPS to retrieve the public
-prayer schedule for the mosque identifier configured in Settings. The request
-is an HTTP GET for `https://mawaqit.net/<language>/<mosque-identifier>`;
-no account or authentication is required. The server can observe the request
-and normal connection information such as your IP address.
+## Good to Know
+- **Windows 11 only.** Supports primary and secondary monitors.
+- **Internet access.** The mod connects to Mawaqit to retrieve your mosque's published prayer times and stores a local copy for reuse.
+- **No account required.** Simply select your mosque.
+- **Mosque-specific schedules.** Prayer times reflect the schedule and adjustments published by your selected mosque.
 
-The schedule is stored in Windhawk's mod-specific storage. A valid cached
-schedule is reused when Explorer restarts, until the configured refresh interval
-expires (24 hours by default; adjustable from 1 to 168 hours). The mod also
-requests a fresh schedule when the mosque or refresh interval changes.
-If a download fails, it retries after one hour. An empty, expired, mismatched,
-or unusable cache causes a download at startup. The mod reads schedule data
-from the public Mawaqit webpage, so changes to that page can interrupt updates.
+## More Information
+For additional screenshots, troubleshooting, technical details, and release information, visit the [GitHub project](https://github.com/hheitlager/windhawk-mawaqit).
 
-
-## More information
-For installation instructions, additional screenshots,
-troubleshooting, and release information, visit:
-
-[GitHub Project](https://github.com/hheitlager/windhawk-mawaqit)
-
-
-## Compatibility and credits
-Windows 11 only. Taskbar XAML integration adapted from Windhawk’s
-[taskbar-folder-menus](https://github.com/ramensoftware/windhawk-mods/blob/main/mods/taskbar-folder-menus.wh.cpp) (MIT).
-
+## Credits and Acknowledgements
+- Mawaqit Prayer Clock is an independent, open-source community project built for [Windhawk](https://windhawk.net).
+- Special thanks to the Windhawk community and the developers whose work helped inspire this mod, including the contributors to [Taskbar Folder Menus](https://github.com/ramensoftware/windhawk-mods/blob/main/mods/taskbar-folder-menus.wh.cpp).
+- Additional acknowledgements and third-party license information can be found in the project's [GitHub repository](https://github.com/hheitlager/windhawk-mawaqit).
 
 ## License
 MIT License.
-
 
 ## Disclaimer
 This is an unofficial community project and is not affiliated with or endorsed by Mawaqit.
 */
 // ==/WindhawkModReadme==
+
 
 // ==WindhawkModSettings==
 /*
@@ -197,6 +169,27 @@ This is an unofficial community project and is not affiliated with or endorsed b
       $name: Fontsize
       $description: Adjust the clock's text size (10–24 px). This does not affect the popup.
     $name: Layout settings
+  - PopupAppearanceSettings:
+    - BackgroundStyle: follow-pill
+      $name: Popup background material
+      $description: Choose the popup material independently of the taskbar pill. Follow pill preserves the previous behavior.
+      $options:
+      - follow-pill: Follow pill
+      - solid: Solid
+      - transparent: Transparent
+      - blur: Blur (experimental)
+      - acrylic: Acrylic (experimental)
+    - BackgroundOpacity: -1
+      $name: Popup background opacity (%)
+      $description: -1 follows the pill opacity (legacy behavior); 0–100 sets the popup independently. For Transparent, Blur and Acrylic this controls the backdrop tint strength.
+    - ShowBorder: true
+      $name: Show popup border
+    - ShowSeparators: true
+      $name: Show popup separators
+    - NativeShadow: false
+      $name: Native Windows popup shadow (experimental)
+      $description: Requests the system drop shadow for the popup. Availability depends on Windows composition and window-region handling.
+    $name: Popup appearance
   - CustomThemeSettings:
     - PillBackground: ""
       $name: Pill background
@@ -220,27 +213,6 @@ This is an unofficial community project and is not affiliated with or endorsed b
       $name: Popup footer
     $name: Custom theme settings
     $description: Optional color overrides for any selected theme. Empty fields inherit the selected palette. Previously saved custom colors remain active until cleared.
-  - PopupAppearanceSettings:
-    - BackgroundStyle: follow-pill
-      $name: Popup background material
-      $description: Choose the popup material independently of the taskbar pill. Follow pill preserves the previous behavior.
-      $options:
-      - follow-pill: Follow pill
-      - solid: Solid
-      - transparent: Transparent
-      - blur: Blur (experimental)
-      - acrylic: Acrylic (experimental)
-    - BackgroundOpacity: -1
-      $name: Popup background opacity (%)
-      $description: -1 follows the pill opacity (legacy behavior); 0–100 sets the popup independently. For Transparent, Blur and Acrylic this controls the backdrop tint strength.
-    - ShowBorder: true
-      $name: Show popup border
-    - ShowSeparators: true
-      $name: Show popup separators
-    - NativeShadow: false
-      $name: Native Windows popup shadow (experimental)
-      $description: Requests the system drop shadow for the popup. Availability depends on Windows composition and window-region handling.
-    $name: Popup appearance
   - ModSettingsAdvanced:
     - RefreshHours: 24
       $name: Refresh interval (hours)
