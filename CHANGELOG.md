@@ -1,6 +1,28 @@
 # Changelog
 Notable changes to Mawaqit Prayer Clock are documented here.
 
+## [0.7.1] — Iqamah schedule and appearance improvements
+
+### Added
+- Optional Iqamah suffix with configurable font scaling.
+- Source-scheduled Adhan-to-Iqamah interval handling with `--:--` in the pill and popup footer, including midnight-crossing Isha.
+- Automatic taskbar pill width and additional popup/theme appearance controls.
+
+### Improved
+- Fajr–Shuruq visibility consistency and pill text alignment on primary/secondary monitors.
+- Separate popup appearance controls, optional popup borders and separators.
+- Documentation for light popup colors under Blur/Acrylic.
+
+### Fixed
+- Do not skip scheduled Iqamah when its optional display suffix is hidden.
+- Handle previous-day Isha Iqamah after midnight without inventing missing times.
+- Clean up event handles on initialization failure.
+- Remove the experimental native Windows popup shadow setting.
+
+### Validation
+- Final author-run audit regression checks: 10/10 passed.
+- Source release; upstream Windhawk catalog update is separate.
+
 ## [0.7.0] — Multi-monitor release candidate
 
 ### Added

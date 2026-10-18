@@ -1,6 +1,6 @@
 # Troubleshooting
 
-Start with the installed Windhawk version and the mod's current settings. This guide describes the v0.7.1 development features where indicated.
+Start with the installed Windhawk version and the mod's current settings. This guide covers the v0.7.1 repository source release; the upstream Windhawk catalog may still provide v0.7.0.
 
 ## No prayer times
 
@@ -32,9 +32,11 @@ To narrow it down:
 
 This behavior is a visual limitation of translucent Windows materials, not necessarily a theme parsing error. See [Themes & customization](THEMES.md#light-popup-colors-with-blur-and-acrylic).
 
-## Iqamah missing or too small (v0.7.1 development)
+## Iqamah missing or too small (v0.7.1)
 
 Enable **Display → Show Iqamah time** and the main countdown; the suffix depends on both. Iqamah information also depends on the mosque's available data. Adjust **Iqamah font scale (%)** between 50 and 100, and ensure the pill has enough width.
+
+The optional Iqamah suffix setting only controls whether the suffix is displayed. When the mosque publishes an Iqamah time, the clock still retains the current prayer between Adhan and Iqamah and shows `--:--` in the pill and popup footer. Missing Iqamah data falls back to the normal next-Adhan countdown.
 
 ## Reporting an issue
 

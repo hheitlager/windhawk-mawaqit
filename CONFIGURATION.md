@@ -1,10 +1,10 @@
 # Configuration reference
 
-This reference covers the **v0.7.1 development source** (`dev6.9.3`). The accepted v0.7.0 release may not expose all controls. Configure options in Windhawk's normal **Settings** tab; Advanced → Mod settings provides the underlying JSON if needed. Back up your existing JSON before editing it.
+This reference covers the **v0.7.1 repository source release**. The accepted upstream Windhawk v0.7.0 may not expose all controls until the catalog is updated. Configure options in Windhawk's normal **Settings** tab; Advanced → Mod settings provides the underlying JSON if needed. Back up your existing JSON before editing it.
 
 ## Finding your mosque
 
-Visit [Mawaqit](https://mawaqit.net/) if you already know its page, or [search Google for a Mawaqit mosque near you](https://www.google.com/search?q=mawaqit+mosque+near+me) to discover a nearby mosque. Open the mosque’s Mawaqit page and copy its full URL or the mosque ID (the last part of the URL) into the mod’s **Mosque** setting.
+If you do not know your mosque’s Mawaqit page, [search Google for a Mawaqit mosque near you](https://www.google.com/search?q=mawaqit+mosque+near+me). Mawaqit’s website does not currently provide a convenient nearby-mosque finder. Open a result for your mosque on [Mawaqit](https://mawaqit.net/) and copy either the **full Mawaqit URL** or its **mosque ID** (the final URL segment) into **General → Mosque**.
 
 For example, both `https://mawaqit.net/en/al-haram-makkah-saudi-arabia` and `al-haram-makkah-saudi-arabia` identify the same mosque. The Google search helps locate a page; it does not replace the Mawaqit URL or ID in the setting.
 

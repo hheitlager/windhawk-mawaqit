@@ -1,6 +1,6 @@
 # Themes & customization
 
-Choose a ready-made look or mix individual colors. This guide reflects the **v0.7.1 development source** (`dev6.9.3`); some options may not yet be present in the accepted v0.7.0 release.
+Choose a ready-made look or mix individual colors. This guide reflects the **v0.7.1 repository source release**; some options may not yet be present in the accepted v0.7.0 release.
 
 ## Gallery
 

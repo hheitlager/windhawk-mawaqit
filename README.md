@@ -2,7 +2,7 @@
 
 Bring your mosque’s prayer times to the **Windows 11 taskbar** with a live countdown, a prayer schedule popup, and customizable themes. An unofficial [Windhawk](https://windhawk.net/) mod.
 
-**Status:** v0.7.0 accepted into Windhawk · v0.7.1 features in development
+**Status:** v0.7.0 accepted into Windhawk · v0.7.1 source release available in this repository (upstream update pending)
 
 | Windows / System | Traditional Islamic |
 |:---:|:---:|
@@ -17,18 +17,17 @@ Bring your mosque’s prayer times to the **Windows 11 taskbar** with a live cou
 - 13 selectable themes, plus customizable pill and popup colors
 - Five taskbar positions and support for multiple monitors
 - Mawaqit schedule retrieval with local caching
-- **In v0.7.1 development:** Iqamah suffix, additional display and appearance controls, separate popup materials, and expanded color overrides
+- **In v0.7.1:** Iqamah suffix and source-scheduled Adhan-to-Iqamah handling (including midnight Isha), automatic pill width, separate popup materials, and expanded appearance controls
 
 ## Getting started
 
 1. Install [Windhawk](https://windhawk.net/) and find **Mawaqit Prayer Clock** in its mod catalog.
 2. Enable the mod and open its settings.
-3. **Find your mosque.** Visit [Mawaqit](https://mawaqit.net/) or [search Google for a Mawaqit mosque near you](https://www.google.com/search?q=mawaqit+mosque+near+me). Open your mosque's Mawaqit page. 
-4. **Configure your mosque**.  Copy the full page URL or its mosque ID (the last part of the URL) into the mod's Mosque setting.
+3. **Find your mosque.** Visit [Mawaqit](https://mawaqit.net/) if you already know its page, or [search Google for a Mawaqit mosque near you](https://www.google.com/search?q=mawaqit+mosque+near+me) to discover a nearby mosque. Mawaqit does not currently offer a convenient nearby-mosque search on its website. Open the mosque’s Mawaqit page and copy its full URL or the mosque ID (the last part of the URL) into the mod’s **Mosque** setting.
 
 ![Where to find the mosque ID](screenshots/Mawaqit-Mosque-Identifier.png)
 
-5. Pick a theme and preferred taskbar position. You're ready!
+4. Pick a theme and preferred taskbar position. You're ready!
 
 ## Make it yours
 
