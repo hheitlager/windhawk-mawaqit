@@ -1,127 +1,80 @@
-# Mawaqit Prayer Clock — Advanced Configuration
+# Configuration reference
 
-Windhawk provides two editors for this mod:
+This reference covers the **v0.7.1 development source** (`dev6.9.3`). The accepted v0.7.0 release may not expose all controls. Configure options in Windhawk's normal **Settings** tab; Advanced → Mod settings provides the underlying JSON if needed. Back up your existing JSON before editing it.
 
-- **Settings:** Mosque, appearance preset, taskbar position, display toggles, hover-popup behavior, and popup auto-close.
-- **Advanced → Mod settings:** The complete JSON settings object, including every color and layout key.
+## General
 
-The current v0.7.0 build exposes the layout, refresh, and custom-theme groups in Settings. Their keys can also be edited in Advanced JSON.
+| Setting | Values / purpose |
+|---|---|
+| `Mosque` | Mawaqit mosque slug or full URL |
+| `Theme` | `system`, `traditional`, `catppuccin`, `emberveil`, `emberveil-midnight`, `emerald-mosque`, `dracula`, `nord`, `gruvbox`, `tokyo-night`, `solarized-dark`, `solarized-light`, `custom` |
+| `Position` | `before-tray`, `after-tray`, `before-icons`, `after-icons`, `center` (experimental) |
 
-## Editing advanced values
+## Display settings
 
-1. Open Windhawk → Mawaqit Prayer Clock → **Advanced**.
-2. Find **Mod settings**, and copy the JSON somewhere safe before editing.
-3. Edit only the values you want to change, keeping valid JSON syntax and existing keys.
-4. Click **Save**. Existing visual settings continue to apply live.
-
-The **Advanced** tab is part of Windhawk; no external configuration file is required. The mod no longer has a separate toggle to show or hide advanced settings. Settings availability and grouping depend on the installed Windhawk version.
-
-## Example
-
-```json
-{
-  "General.Mosque": "al-haram-makkah-saudi-arabia",
-  "General.Theme": "catppuccin",
-  "General.Position": "before-tray",
-  "General.ShowPrimaryMonitor": 1,
-  "General.ShowSecondaryMonitors": 1,
-  "Display.ShowNextPrayer": 1,
-  "Display.ShowCountdown": 1,
-  "Display.EnablePopup": 1,
-  "Display.OpenPopupOnHover": 0,
-  "Display.HoverCloseDelayMs": 500,
-  "Display.PopupAutoCloseSeconds": 0,
-  "AdvancedCustomization.ModSettingsAdvanced.RefreshHours": 24,
-  "AdvancedCustomization.LayoutSettings.Width": 220,
-  "AdvancedCustomization.LayoutSettings.PillHeight": 0,
-  "AdvancedCustomization.LayoutSettings.Margins": "10, 0, 0, 0",
-  "AdvancedCustomization.LayoutSettings.Padding": "8, 0, 8, 0",
-  "AdvancedCustomization.LayoutSettings.TrayGap": 0,
-  "AdvancedCustomization.LayoutSettings.CornerRadius": 13,
-  "AdvancedCustomization.LayoutSettings.FontSize": 15,
-  "AdvancedCustomization.CustomThemeSettings.CustomPillBackground": "#211E32",
-  "AdvancedCustomization.CustomThemeSettings.CustomPillText": "#F5E6C8",
-  "AdvancedCustomization.CustomThemeSettings.CustomPillSeparator": "#B8A98A",
-  "AdvancedCustomization.CustomThemeSettings.CustomPillCountdown": "#FFBC5E",
-  "AdvancedCustomization.CustomThemeSettings.CustomPopupBackground": "#1D1D2D",
-  "AdvancedCustomization.CustomThemeSettings.CustomPopupBorder": "#3B3B58",
-  "AdvancedCustomization.CustomThemeSettings.CustomPopupText": "#D3D0E8",
-  "AdvancedCustomization.CustomThemeSettings.CustomPopupMuted": "#B8B3D1",
-  "AdvancedCustomization.CustomThemeSettings.CustomPopupRule": "#424158",
-  "AdvancedCustomization.CustomThemeSettings.CustomPopupFooter": "#A29DBB"
-}
-```
-
-This is a **sample configuration**, not the mod's built-in defaults. The settings editor's current JSON is the authoritative starting point for your installation. This sample uses the existing settings keys; it is not intended to reset your saved configuration.
-
-## Setting reference
-
-| Setting | Purpose | Valid values / behavior |
+| Setting | Default | Meaning |
 |---|---|---|
-| `Mosque` | Mawaqit mosque identifier or URL | String |
-| `ShowPrimaryMonitor` | Show clock on the primary taskbar | 0 or 1; default 1 |
-| `ShowSecondaryMonitors` | Show clocks on secondary taskbars | 0 or 1; default 1 |
-| `Position` (**Taskbar position**) | Where the clock appears | `before-tray` (default), `after-tray`, `before-icons`, `after-icons`, `center` (experimental) |
-| `RefreshHours` | Schedule refresh interval | 1–168 hours; default 24 |
-| `Theme` | Built-in theme or custom palette | `system`, `traditional`, `catppuccin`, `emberveil`, `emberveil-midnight`, `emerald-mosque`, `dracula`, `nord`, `gruvbox`, `tokyo-night`, `solarized-dark`, `solarized-light`, `custom` |
-| `ShowNextPrayer` | Prayer label and time | 0 or 1 |
-| `ShowCountdown` | Live countdown | 0 or 1 |
-| `EnablePopup` | Prayer schedule popup | 0 or 1 |
-| `OpenPopupOnHover` | Open popup when hovering over the clock | 0 or 1; default 0 |
-| `HoverCloseDelayMs` | Delay after cursor leaves clock and popup | 0–5000 ms; default 500 |
-| `PopupAutoCloseSeconds` | Dismiss popup automatically | 0 = disabled; 1–300 seconds; default 5 |
-| `CustomPillBackground` | Pill background | `#RRGGBB` |
-| `CustomPillText` | Prayer label | `#RRGGBB` |
-| `CustomPillSeparator` | Separator dot | `#RRGGBB` |
-| `CustomPillCountdown` | Countdown text | `#RRGGBB` |
-| `CustomPopupBackground` | Popup background | `#RRGGBB` |
-| `CustomPopupBorder` | Popup outline | `#RRGGBB` |
-| `CustomPopupText` | Popup primary text | `#RRGGBB` |
-| `CustomPopupMuted` | Popup secondary text | `#RRGGBB` |
-| `CustomPopupRule` | Popup divider lines | `#RRGGBB` |
-| `CustomPopupFooter` | Popup footer | `#RRGGBB` |
-| `Width` | Clock width | 180–400 px; default 200 |
-| `PillHeight` (**Height**) | Clock height | `0` = automatic; 1–100 px = manual override; default 0 |
-| `Margins` (**Margin**) | Moves the entire clock relative to its automatic position | Four comma-separated signed integers `left, top, right, bottom`; each −100 to 100 px; default `"0, 0, 0, 0"` |
-| `Padding` | Reserves space between the clock edges and text, without moving or resizing the clock | Four comma-separated integers `left, top, right, bottom`; each 0–100 px; default `"0, 0, 0, 0"` |
-| `TrayGap` (**Gap before system tray**) | Horizontal gap before the tray | 0–100 px; default 5 |
-| `CornerRadius` (**Corner radius**) | Corner roundness | 0–30 px; capped to half the painted width/height; default 13 |
-| `FontSize` (**Fontsize**) | Clock text size | 10–24 px; default 15 |
+| `ShowNextPrayer` | true | Prayer name and time |
+| `ShowCountdown` | true | Main countdown |
+| `ShowIqamahTime` | true | Iqamah suffix and popup delay information |
+| `ShowFajrWindowCountdown` | false | After Fajr and before Shuruq, count down to sunrise |
+| `ShowPrimaryMonitor` | true | Show clock on primary taskbar |
+| `ShowSecondaryMonitors` | true | Show clocks on secondary taskbars |
 
-## Taskbar position
+## Advanced → Layout settings
 
-The **Taskbar position** dropdown is available under **General**; advanced customization does not need to be enabled. Positions can be changed live without restarting Explorer and apply to enabled primary and secondary monitors. On narrow or crowded taskbars, some positions may not have enough space.
-
-| Position | Setting value | Behavior |
+| Setting | Default | Valid values / notes |
 |---|---|---|
-| Before system tray | `before-tray` | Clock sits immediately before the system tray in the native taskbar layout (default). |
-| After system tray | `after-tray` | Clock sits after the tray, following the Show Desktop area. |
-| Before taskbar icons | `before-icons` | Clock is anchored before the application icons. |
-| After taskbar icons | `after-icons` | Clock is anchored after the application icons and follows their position as the taskbar changes. |
-| Dynamic center (experimental) | `center` | Starts at the physical taskbar center and shifts right when application icons approach it. This overlay does **not** reserve application layout space; Windows might not combine or resize buttons to make room, and overlaps can occur on crowded taskbars. |
+| `Width` | 200 | 180–400 px; invalid values use 200 |
+| `PillHeight` | 0 | 0 automatic, otherwise 1–100 px |
+| `Margins` | `0, 0, 0, 0` | left, top, right, bottom; −100 to 100 each |
+| `Padding` | `0, 0, 0, 0` | left, top, right, bottom; 0–100 each |
+| `TrayGap` | 5 | 0–100 px |
+| `CornerRadius` | 13 | 0–30 px |
+| `BackgroundStyle` | `solid` | `solid`, `transparent`, `blur`, `acrylic` |
+| `BackgroundOpacity` | 100 | 0–100% |
+| `ShowPillBorder` | false | 1 px accent border |
+| `TextShadow` | false | Subtle pill text shadow |
+| `FontSize` | 15 | 10–24 px |
+| `IqamahFontScale` | 80 | 50–100% of pill font size |
 
-If a position is unavailable due to a different Windows taskbar layout or another taskbar mod, the clock might not appear at that location.
+## Advanced → Popup appearance
 
-## Layout examples
+| Setting | Default | Values / meaning |
+|---|---|---|
+| `EnablePopup` | true | Enable popup |
+| `OpenPopupOnHover` | false | Hover opens popup |
+| `HoverCloseDelayMs` | 500 | 0–5000 ms |
+| `PopupAutoCloseSeconds` | 5 | 0 disabled; 1–300 seconds |
+| `BackgroundStyle` | `follow-pill` | `follow-pill`, `solid`, `transparent`, `blur`, `acrylic` |
+| `BackgroundOpacity` | -1 | -1 follows pill; 0–100 independently |
+| `ShowBorder` | true | Popup border visibility |
+| `ShowSeparators` | true | Popup divider visibility |
+| `NativeShadow` | false | Experimental native Windows popup shadow |
 
-The names in parentheses in the reference table are the labels shown in Windhawk; the code-formatted names are the JSON keys. Keep those keys unchanged when editing Advanced JSON.
+## Advanced → Custom theme settings
 
-- **Automatic height:** Set `PillHeight` to `0`. The clock uses its automatic native XAML height.
-- **Manual height:** Set `PillHeight` to `26` for a fixed requested height (still limited to the taskbar height).
-- **Margin:** `"10, 0, 0, 0"` moves the clock 10 px right; `"0, 5, 0, 0"` moves it 5 px down; right and bottom margins move it in the opposite directions. Opposing values cancel each other.
-- **Padding:** `"8, 0, 8, 0"` reserves 8 px on each horizontal side for the text. `"0, 4, 0, 0"` reserves 4 px above the text, moving the available text area's center down. Padding may clip text when space is limited.
+All fields default to **empty** and accept optional `#RRGGBB` overrides. Unlike older releases, **overrides apply to any selected preset**. Empty or invalid values inherit the selected theme. The `custom` theme has its own built-in fallback palette.
 
-Margin affects **position only**; padding affects the **text area only**. Neither changes the clock's width or height. Invalid four-value strings revert to zero insets. The old `OffsetX`, `OffsetY`, and `PillPadding` keys are no longer used by v0.6.6; update any older saved configuration to use `Margins` and `Padding`.
+| Pill | Popup |
+|---|---|
+| `PillBackground` | `PopupBackground` |
+| `PillText` | `PopupBorder` |
+| `PillSeparator` | `PopupText` |
+| `PillCountdown` | `PopupMuted` |
+| `PillIqamah` | `PopupRule` |
+| `PillBorder` | `PopupFooter` |
 
-**Custom theme:** To use custom colors, set `"General.Theme": "custom"` in Advanced JSON. Selecting a built-in preset ignores the custom color values without deleting them. **Custom** is available in the regular appearance dropdown.
+When empty, `PillIqamah` and `PillBorder` inherit the **resolved** countdown color. `ShowPillBorder` must be enabled for the pill border to appear.
 
-**Compatibility:** Tested on the author’s Windows 11 setup. Native XAML taskbar layouts can vary across Windows builds and taskbar modifications.
+For all preset colors and examples, see [THEMES.md](THEMES.md).
 
-## Popup behavior
+## Advanced → Mod settings
 
-Enable **Open popup when hovering over clock** to open the prayer schedule without clicking. The hover close delay controls how long the pointer may remain outside both the clock and popup before the popup closes. **Popup auto-close** is a separate timer; set it to `0` to disable automatic time-based dismissal.
+`RefreshHours`: 1–168 hours, default 24. Failed updates retry after one hour; fresh matching cache data may be reused after Explorer restarts. The mod stores cache data in Windhawk-managed mod storage.
 
-## Schedule cache and refresh behavior (v0.6.9)
+## Example: change only an accent
 
-The mod stores its schedule and metadata in Windhawk-managed mod storage (`Wh_GetModStoragePath()`), not the old `%LOCALAPPDATA%\EmberveilMawaqit` folder. It reuses a fresh matching cache after Explorer restarts. Failed updates retry after one hour. The worker wakes at the December-to-January boundary so the new year’s schedule can be requested, subject to Mawaqit providing it.
+Select **Nord** as the theme, then enter `#FFBC5E` into **Advanced → Custom theme settings → Pill countdown**. Leave **Pill Iqamah** empty to inherit that accent. Clear **Pill countdown** to return to Nord's default accent.
 
+**Note:** The settings groups and JSON key paths changed since the older v0.7.0 documentation. Always use the current installed mod's settings editor as the authority for your build rather than pasting an old full JSON object.
