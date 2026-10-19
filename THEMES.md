@@ -4,24 +4,45 @@ Choose a ready-made look or mix individual colors. This guide reflects the **v0.
 
 ## Gallery
 
-These are **source-defined palette colors**, not screenshots of every theme. Windows / System uses the Windows light/dark preference and system highlight accent; Custom begins with Emberveil-like fallback colors.
+The gallery shows the **v0.7.1 preset previews** alongside their source-defined pill palette colors. Screenshots are real captures; prayer times and countdowns may differ because they were taken at different moments. Windows / System follows Windows appearance and accent settings. Custom starts with fallback colors that can be overridden.
 
 | Theme | Pill background | Prayer text | Countdown | Separator | Preview |
 |---|---|---|---|---|---|
 | **Traditional Islamic** | `#123D34` | `#F5EAD3` | `#E4C784` | `#C9B789` | ![Traditional Islamic](screenshots/Mawaqit-Traditional-Islamic.png) |
-| **Emerald Mosque** | `#102B27` | `#F3E8CF` | `#D4AF70` | `#B6C9BD` | Palette only |
+| **Emerald Mosque** | `#102B27` | `#F3E8CF` | `#D4AF70` | `#B6C9BD` | ![Emerald Mosque](screenshots/Mawaqit-Emerald-Mosque.png) |
 | **Emberveil** | `#171B20` | `#F5E6C8` | `#FFBC5E` | `#D9A441` | ![Emberveil](screenshots/Mawaqit-Emberveil.png) |
-| **Emberveil Midnight** | `#0A0C0E` | `#F5E6C8` | `#FFBC5E` | `#B8A98A` | Palette only |
-| **Emberveil Daybreak** | `#FFF2D8` | `#1A1F26` | `#B87924` | `#8A642D` | Palette only |
-| **Catppuccin Mocha** | `#211E32` | `#CDD6F4` | `#CFA1FF` | `#A6ADC8` | ![Catppuccin Mocha](screenshots/Mawaqit-Catppucchin-Moca.png) |
-| **Dracula** | `#282A36` | `#F8F8F2` | `#BD93F9` | `#6272A4` | Palette only |
-| **Nord** | `#2E3440` | `#ECEFF4` | `#88C0D0` | `#81A1C1` | Palette only |
-| **Gruvbox Dark** | `#282828` | `#EBDBB2` | `#FABD2F` | `#928374` | Palette only |
-| **Tokyo Night** | `#1A1B26` | `#C0CAF5` | `#7AA2F7` | `#565F89` | Palette only |
-| **Solarized Dark** | `#002B36` | `#93A1A1` | `#B58900` | `#586E75` | Palette only |
-| **Solarized Light** | `#FDF6E3` | `#586E75` | `#268BD2` | `#93A1A1` | Palette only |
+| **Emberveil Midnight** | `#0A0C0E` | `#F5E6C8` | `#FFBC5E` | `#B8A98A` | ![Emberveil Midnight](screenshots/Mawaqit-Emberveil-Midnight.png) |
+| **Emberveil Daybreak** | `#FFF2D8` | `#1A1F26` | `#B87924` | `#8A642D` | ![Emberveil Daybreak](screenshots/Mawaqit-Emberveil-Daybreak.png) |
+| **Catppuccin Mocha** | `#211E32` | `#CDD6F4` | `#CFA1FF` | `#A6ADC8` | ![Catppuccin Mocha](screenshots/Mawaqit-Catppuccin-Mocha.png) |
+| **Dracula** | `#282A36` | `#F8F8F2` | `#BD93F9` | `#6272A4` | ![Dracula](screenshots/Mawaqit-Dracula.png) |
+| **Nord** | `#2E3440` | `#ECEFF4` | `#88C0D0` | `#81A1C1` | ![Nord](screenshots/Mawaqit-Nord.png) |
+| **Gruvbox Dark** | `#282828` | `#EBDBB2` | `#FABD2F` | `#928374` | ![Gruvbox Dark](screenshots/Mawaqit-Gruvbox-Dark.png) |
+| **Tokyo Night** | `#1A1B26` | `#C0CAF5` | `#7AA2F7` | `#565F89` | ![Tokyo Night](screenshots/Mawaqit-Tokyo-Night.png) |
+| **Solarized Dark** | `#002B36` | `#93A1A1` | `#B58900` | `#586E75` | ![Solarized Dark](screenshots/Mawaqit-Solarized-Dark.png) |
+| **Solarized Light** | `#FDF6E3` | `#586E75` | `#268BD2` | `#93A1A1` | ![Solarized Light](screenshots/Mawaqit-Solarized-Light.png) |
+| **Windows / System** | Windows accent | White | White | White | ![Windows / System](screenshots/Mawaqit-Windows-System-Default.png) |
 
 **Windows / System:** Accent-filled pill with white prayer text, countdown and separators by default. The accent follows Windows highlight; users with pale accents or transparent pill backgrounds can adjust text colors through custom overrides. Live pill refresh on Windows appearance changes is deferred to v0.8.0. **Custom fallback:** pill `#211E32`, prayer `#F5E6C8`, countdown `#FFBC5E`, separator `#B8A98A`.
+
+
+## Custom theme showcase
+
+![Custom neon pink theme example](screenshots/Mawaqit-Custom-Example.png)
+
+A deliberately bold example of what is possible with **Advanced → Custom theme settings**. **Neon Maghrib** is a community-style example, **not** an included preset. It uses Catppuccin Mocha as its base, with a solid pill, a blurred popup, and the following custom overrides.
+
+| Custom theme setting | Value | Custom theme setting | Value |
+|---|---|---|---|
+| `PillBackground` | `#080122` | `PopupBackground` | `#080122` |
+| `PillText` | `#FC2281` | `PopupBorder` | `#FC2281` |
+| `PillSeparator` | `#FC2281` | `PopupText` | `#F7A2F7` |
+| `PillCountdown` | `#F7A2F7` | `PopupMuted` | `#FC2281` |
+| `PillIqamah` | `#F72655` | `PopupRule` | `#FC2281` |
+| `PillBorder` | `#FC2281` | `PopupFooter` | `#F7A2F7` |
+
+To reproduce the look, select **General → Theme → Catppuccin Mocha**, then enter these colors under **Advanced → Custom theme settings**. Under **Advanced → Layout settings**, set **Background style** to **Solid**, **Background opacity** to **100%**, **Show pill border** to **On**, and **Fontsize** to **20**. Under **Advanced → Popup appearance**, set **Popup background material** to **Blur** and enable **Show popup border** and **Show popup separators**. The example also uses **Display → Show Shuruq and Imsak** and **Show Iqamah time**.
+
+> **Tip:** Apply the values individually instead of pasting a complete saved configuration. That way, your mosque selection, taskbar position, and other personal settings stay unchanged. Saved custom colors remain active when switching to other presets until cleared.
 
 ## Popup palettes
 
