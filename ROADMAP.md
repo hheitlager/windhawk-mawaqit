@@ -21,11 +21,23 @@ This roadmap outlines planned improvements and ideas under consideration. Featur
 - [ ] Determine whether the taskbar should follow Windows *system* appearance while the popup follows *app* appearance, or whether both should share one user-selectable preference.
 - [ ] Evaluate reading the Windows accent color and reacting to accent changes.
 - [ ] Investigate reliable taskbar background-color detection for standard Windows configurations. **Do not assume compatibility with third-party taskbar styling mods.**
-- [ ] Decide how existing standalone presets such as **Emberveil**, **Emberveil Midnight**, and **Emberveil Daybreak** map to automatic light/dark variants without altering their approved looks.
+- [ ] Decide how existing presets map to automatic light/dark variants without altering their approved looks.
 
-## v0.9.0 — To be defined
+## v0.9.0 — Localization & Religious Calendar Integration
 
-Reserved for the next feature discussion. No features are committed yet.
+**Status:** Planned — Internal development milestone
+
+### Planned investigations and features
+
+- [ ] **Localization overhaul:** Investigate multilingual UI support, including automatic language detection and manual language selection. Evaluate whether existing Mawaqit translations can be reused or whether a dedicated translation system would be more appropriate.
+- [ ] **Ramadan & holy moments:** Investigate Ramadan-specific features, important Islamic dates, and integration with available Mawaqit data.
+- [ ] **Community feature review:** Revisit previously collected suggestions, including the Claude-assisted proposals, and evaluate them for adoption based on usefulness, feasibility, and compatibility.
+
+### Potential graduation to v1.0.0
+
+If the v0.9.0 development cycle successfully delivers the planned functionality and passes stability, compatibility, and release testing, the project may be promoted directly to **v1.0.0**, marking its first stable release and the end of its beta development stage.
+
+This promotion is a goal, not a guaranteed release commitment.
 
 ## Current release boundary — v0.7.1
 
