@@ -10,8 +10,9 @@ These are **source-defined palette colors**, not screenshots of every theme. Win
 |---|---|---|---|---|---|
 | **Traditional Islamic** | `#123D34` | `#F5EAD3` | `#E4C784` | `#C9B789` | ![Traditional Islamic](screenshots/Mawaqit-Traditional-Islamic.png) |
 | **Emerald Mosque** | `#102B27` | `#F3E8CF` | `#D4AF70` | `#B6C9BD` | Palette only |
-| **Emberveil** | `#211E32` | `#F5E6C8` | `#FFBC5E` | `#B8A98A` | ![Emberveil](screenshots/Mawaqit-Emberveil.png) |
+| **Emberveil** | `#171B20` | `#F5E6C8` | `#FFBC5E` | `#D9A441` | ![Emberveil](screenshots/Mawaqit-Emberveil.png) |
 | **Emberveil Midnight** | `#0A0C0E` | `#F5E6C8` | `#FFBC5E` | `#B8A98A` | Palette only |
+| **Emberveil Daybreak** | `#FFF2D8` | `#1A1F26` | `#B87924` | `#8A642D` | Palette only |
 | **Catppuccin Mocha** | `#211E32` | `#CDD6F4` | `#CFA1FF` | `#A6ADC8` | ![Catppuccin Mocha](screenshots/Mawaqit-Catppucchin-Moca.png) |
 | **Dracula** | `#282A36` | `#F8F8F2` | `#BD93F9` | `#6272A4` | Palette only |
 | **Nord** | `#2E3440` | `#ECEFF4` | `#88C0D0` | `#81A1C1` | Palette only |
@@ -20,7 +21,7 @@ These are **source-defined palette colors**, not screenshots of every theme. Win
 | **Solarized Dark** | `#002B36` | `#93A1A1` | `#B58900` | `#586E75` | Palette only |
 | **Solarized Light** | `#FDF6E3` | `#586E75` | `#268BD2` | `#93A1A1` | Palette only |
 
-**Windows / System:** Light pill `#F2F2F2` / dark pill `#292929`; countdown follows Windows highlight. **Custom fallback:** pill `#211E32`, prayer `#F5E6C8`, countdown `#FFBC5E`, separator `#B8A98A`.
+**Windows / System:** Accent-filled pill with white prayer text, countdown and separators by default. The accent follows Windows highlight; users with pale accents or transparent pill backgrounds can adjust text colors through custom overrides. Live pill refresh on Windows appearance changes is deferred to v0.8.0. **Custom fallback:** pill `#211E32`, prayer `#F5E6C8`, countdown `#FFBC5E`, separator `#B8A98A`.
 
 ## Popup palettes
 
@@ -28,8 +29,9 @@ These are **source-defined palette colors**, not screenshots of every theme. Win
 |---|---|---|---|---|---|---|
 | **Traditional Islamic** | `#102F29` | `#527361` | `#F5EAD3` | `#C9B789` | `#527361` | `#E4C784` |
 | **Emerald Mosque** | `#102B27` | `#386057` | `#F3E8CF` | `#B6C9BD` | `#386057` | `#D4AF70` |
-| **Emberveil** | `#1D1D2D` | `#3B3B58` | `#D3D0E8` | `#B8B3D1` | `#424158` | `#A29DBB` |
+| **Emberveil** | `#171B20` | `#212832` | `#F5E6C8` | `#F5E6C8` | `#212832` | `#D9A441` |
 | **Emberveil Midnight** | `#101418` | `#353A3E` | `#F5E6C8` | `#B8A98A` | `#353A3E` | `#FFBC5E` |
+| **Emberveil Daybreak** | `#F5E6C8` | `#E2CFA8` | `#1A1F26` | `#6F624F` | `#E2CFA8` | `#B87924` |
 | **Catppuccin Mocha** | `#302D47` | `#58536F` | `#CDD6F4` | `#A6ADC8` | `#58536F` | `#B4BEFE` |
 | **Dracula** | `#282A36` | `#44475A` | `#F8F8F2` | `#BFBFD0` | `#44475A` | `#BD93F9` |
 | **Nord** | `#2E3440` | `#4C566A` | `#ECEFF4` | `#D8DEE9` | `#4C566A` | `#88C0D0` |
@@ -51,7 +53,7 @@ These are **source-defined palette colors**, not screenshots of every theme. Win
 | `PillIqamah` | Iqamah suffix; empty follows the resolved countdown color |
 | `PillBorder` | Optional border; empty follows countdown accent |
 
-The popup has six independent roles: `PopupBackground`, `PopupBorder`, `PopupText`, `PopupMuted`, `PopupRule` (divider lines), and `PopupFooter`. The pill and popup also have separate material/opacity controls; those change how colors appear on screen.
+Imsak and Shuruq use the primary popup text color by default; Iqamah offsets use the muted/secondary color. The popup has six independent roles: `PopupBackground`, `PopupBorder`, `PopupText`, `PopupMuted`, `PopupRule` (divider lines), and `PopupFooter`. The pill and popup also have separate material/opacity controls; those change how colors appear on screen.
 
 ## Light popup colors with Blur and Acrylic
 

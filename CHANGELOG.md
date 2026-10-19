@@ -7,9 +7,15 @@ Notable changes to Mawaqit Prayer Clock are documented here.
 - Optional Iqamah suffix with configurable font scaling.
 - Source-scheduled Adhan-to-Iqamah interval handling with `--:--` in the pill and popup footer, including midnight-crossing Isha.
 - Automatic taskbar pill width and additional popup/theme appearance controls.
+- Optional Imsak support for seven-entry Mawaqit calendars, while retaining six-entry calendar support.
+- Emberveil Daybreak theme preset.
 
 ### Improved
 - Fajr–Shuruq visibility consistency and pill text alignment on primary/secondary monitors.
+- **Show Shuruq and Imsak** popup option (existing setting key retained); Imsak appears only when published by the mosque.
+- Dynamic mosque-name header height for wrapped names, plus more consistent popup row and footer spacing.
+- Emberveil palette refinement and Windows/System accent-filled pill with white text.
+- Primary text color for Imsak and Shuruq; secondary color retained for Iqamah offsets.
 - Separate popup appearance controls, optional popup borders and separators.
 - Documentation for light popup colors under Blur/Acrylic.
 
@@ -18,10 +24,13 @@ Notable changes to Mawaqit Prayer Clock are documented here.
 - Handle previous-day Isha Iqamah after midnight without inventing missing times.
 - Clean up event handles on initialization failure.
 - Remove the experimental native Windows popup shadow setting.
+- Correct seven-entry calendar indexing and invalidate incompatible schedule caches (cache format v4).
 
 ### Validation
 - Final author-run audit regression checks: 10/10 passed.
 - Source release; upstream Windhawk catalog update is separate.
+- Additional focused visual checks covered wrapped mosque names, optional prayer rows, and Emberveil presets; consolidated regression results are not yet documented here.
+- Known limitation: Windows/System pill may not refresh immediately on Windows appearance changes (planned for v0.8.0).
 
 ## [0.7.0] — Multi-monitor release candidate
 

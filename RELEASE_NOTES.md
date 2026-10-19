@@ -2,25 +2,31 @@
 
 **Author-tested source release — pending upstream Windhawk update**
 
-This release builds on v0.7.0 with scheduled Iqamah support, automatic pill sizing, and expanded appearance controls. Prayer and Iqamah times come from the selected mosque's published Mawaqit schedule; the mod does not estimate unavailable Iqamah times.
+This release builds on v0.7.0 with scheduled Iqamah support, optional Imsak, automatic pill sizing, adaptive popup layouts, and expanded appearance controls. Prayer and Iqamah times come from the selected mosque's published Mawaqit schedule; the mod does not estimate unavailable Iqamah times.
 
 ### Highlights
 - Show an optional Iqamah suffix beside the taskbar countdown, with adjustable font scaling.
 - Between a scheduled Adhan and its Iqamah, retain the current prayer and show `--:--` consistently in the pill and popup footer, even when the optional Iqamah suffix is hidden.
 - Handle Isha Iqamah intervals crossing midnight using the previous day's published schedule; missing Iqamah data falls back to Adhan-to-Adhan behavior.
 - Automatically size and center visible pill contents, with manual width still available.
-- Keep the Fajr–Shuruq special behavior consistent with its display setting.
+- Offer **Show Shuruq and Imsak** (off by default): include Shuruq and mosque-provided Imsak rows in the popup; retain the Fajr-to-Shuruq countdown. Imsak is informational, not a prayer countdown.
+- Support six- and seven-entry Mawaqit calendar formats with corrected prayer-time mapping; refresh older incompatible schedule caches using format v4.
+- Dynamically size popup mosque-name headers for wrapped names and refine optional-row/footer spacing.
+- Add Emberveil Daybreak and refine the Emberveil palette family.
+- Style the Windows/System taskbar pill with a Windows accent background and white text. Imsak and Shuruq rows use primary popup text; Iqamah offsets retain secondary text.
 - Separate popup appearance/material controls, optional borders and separators, and expanded custom theme overrides.
 - Remove the experimental native Windows popup shadow option.
 
 ### Validation
-The author confirmed all 10/10 final audit-fix regression checks, including midnight rollover, unavailable Iqamah, primary/secondary taskbars, and unload/reload. Earlier focused checks covered popup materials, borders, auto width, and text alignment. This is not a guarantee of compatibility with every Windows 11 build or taskbar modification.
+The author confirmed all 10/10 final audit-fix regression checks, including midnight rollover, unavailable Iqamah, primary/secondary taskbars, and unload/reload. Earlier focused checks covered popup materials, borders, auto width, and text alignment. Subsequent visual checks confirmed optional prayer rows, wrapped headers, and Emberveil palettes in tested examples; a consolidated post-merge regression pass has not been reported. This is not a guarantee of compatibility with every Windows 11 build or taskbar modification.
 
 ### Known limitations
 - Light custom popup colors can appear washed out with Blur or Acrylic because of Windows composition. See [Themes](THEMES.md#light-popup-colors-with-blur-and-acrylic) and [Troubleshooting](TROUBLESHOOTING.md#light-popup-background-looks-white-or-washed-out).
 - Dynamic center remains experimental on crowded taskbars.
 - Only published Mawaqit schedule data is used; missing Iqamah times are not fabricated.
 - Localization is a future enhancement, not part of v0.7.1.
+- The Windows/System pill may not refresh immediately when switching Windows light/dark mode; live appearance refresh is planned for v0.8.0.
+- Imsak only appears if the selected mosque provides it in its schedule.
 
 ### Installation
 Use `src/windhawk-mawaqit.wh.cpp` in Windhawk's mod editor, compile, enable, and configure your mosque. Existing settings should be reviewed after upgrading. This repository commit does not itself update the upstream Windhawk catalog.

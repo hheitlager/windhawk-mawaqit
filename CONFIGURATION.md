@@ -15,7 +15,7 @@ For example, both `https://mawaqit.net/en/al-haram-makkah-saudi-arabia` and `al-
 | Setting | Values / purpose |
 |---|---|
 | `Mosque` | Mawaqit mosque slug or full URL |
-| `Theme` | `system`, `traditional`, `catppuccin`, `emberveil`, `emberveil-midnight`, `emerald-mosque`, `dracula`, `nord`, `gruvbox`, `tokyo-night`, `solarized-dark`, `solarized-light`, `custom` |
+| `Theme` | `system`, `traditional`, `catppuccin`, `emberveil`, `emberveil-midnight`, `emberveil-daybreak`, `emerald-mosque`, `dracula`, `nord`, `gruvbox`, `tokyo-night`, `solarized-dark`, `solarized-light`, `custom` |
 | `Position` | `before-tray`, `after-tray`, `before-icons`, `after-icons`, `center` (experimental) |
 
 ## Display settings
@@ -25,7 +25,7 @@ For example, both `https://mawaqit.net/en/al-haram-makkah-saudi-arabia` and `al-
 | `ShowNextPrayer` | true | Prayer name and time |
 | `ShowCountdown` | true | Main countdown |
 | `ShowIqamahTime` | true | Iqamah suffix and popup delay information |
-| `ShowFajrWindowCountdown` | false | After Fajr and before Shuruq, count down to sunrise |
+| `ShowFajrWindowCountdown` | false | **Show Shuruq and Imsak** in the UI. Adds Shuruq and optional mosque-provided Imsak rows to the popup; after Fajr, counts down to Shuruq. Imsak is informational, not a prayer countdown. Existing setting key is retained. |
 | `ShowPrimaryMonitor` | true | Show clock on primary taskbar |
 | `ShowSecondaryMonitors` | true | Show clocks on secondary taskbars |
 
@@ -33,7 +33,7 @@ For example, both `https://mawaqit.net/en/al-haram-makkah-saudi-arabia` and `al-
 
 | Setting | Default | Valid values / notes |
 |---|---|---|
-| `Width` | 200 | 180–400 px; invalid values use 200 |
+| `Width` | 0 | 0 automatically sizes the pill; fixed width 180–400 px |
 | `PillHeight` | 0 | 0 automatic, otherwise 1–100 px |
 | `Margins` | `0, 0, 0, 0` | left, top, right, bottom; −100 to 100 each |
 | `Padding` | `0, 0, 0, 0` | left, top, right, bottom; 0–100 each |
@@ -58,7 +58,6 @@ For example, both `https://mawaqit.net/en/al-haram-makkah-saudi-arabia` and `al-
 | `BackgroundOpacity` | -1 | -1 follows pill; 0–100 independently |
 | `ShowBorder` | true | Popup border visibility |
 | `ShowSeparators` | true | Popup divider visibility |
-| `NativeShadow` | false | Experimental native Windows popup shadow |
 
 ## Advanced → Custom theme settings
 
@@ -73,9 +72,9 @@ All fields default to **empty** and accept optional `#RRGGBB` overrides. Unlike 
 | `PillIqamah` | `PopupRule` |
 | `PillBorder` | `PopupFooter` |
 
-When empty, `PillIqamah` and `PillBorder` inherit the **resolved** countdown color. `ShowPillBorder` must be enabled for the pill border to appear.
+When empty, `PillIqamah` and `PillBorder` inherit the **resolved** countdown color. For Windows / System, the accent-filled pill uses white text by default; if you disable its background or choose a pale accent, adjust the foreground colors with overrides. Imsak and Shuruq popup rows use the primary text color; Iqamah offsets use the secondary color. `ShowPillBorder` must be enabled for the pill border to appear.
 
-For all preset colors and examples, see [THEMES.md](THEMES.md).
+For all preset colors and examples, see [THEMES.md](THEMES.md). The current Windows / System pill may need a mod reload after switching Windows light/dark mode; automatic live refresh is planned for v0.8.0.
 
 ## Advanced → Mod settings
 

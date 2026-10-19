@@ -90,6 +90,7 @@ This is an unofficial community project and is not affiliated with or endorsed b
     - catppuccin: Catppuccin Mocha
     - emberveil: Emberveil
     - emberveil-midnight: Emberveil Midnight
+    - emberveil-daybreak: Emberveil Daybreak
     - emerald-mosque: Emerald Mosque
     - dracula: Dracula
     - nord: Nord
@@ -117,8 +118,8 @@ This is an unofficial community project and is not affiliated with or endorsed b
     $name: Show Iqamah time
     $description: Show the mosque's Iqamah delay (+N minutes) next to the countdown and each prayer in the popup.
   - ShowFajrWindowCountdown: false
-    $name: Show Fajr time remaining until sunrise
-    $description: After Fajr begins and before Shuruq, show a countdown to sunrise instead of the next prayer and include Shuruq in the popup schedule. Disabled by default; Shuruq is hidden from the popup when disabled.
+    $name: Show Shuruq and Imsak
+    $description: Include Shuruq (sunrise) and, when provided by your mosque, Imsak in the popup schedule. After Fajr begins, the countdown shows the time remaining until Shuruq. Imsak is informational and does not start a prayer countdown. Disabled by default.
   - ShowPrimaryMonitor: true
     $name: Show clock on primary monitor
   - ShowSecondaryMonitors: true
@@ -1568,7 +1569,7 @@ static bool Run(const std::wstring& mosque, unsigned long long expectedGeneratio
     GetLocalTime(&now);
     int year = now.wYear;
     std::ostringstream sched;
-    sched << "# Emberveil Mawaqit schedule v3\n# Source: https://mawaqit.net" << narrow(path)
+    sched << "# Emberveil Mawaqit schedule v4\n# Source: https://mawaqit.net" << narrow(path)
           << "\n# Year: " << year << "\n";
     for (int m = 1; m <= 12; m++)
     {
@@ -1578,12 +1579,15 @@ static bool Run(const std::wstring& mosque, unsigned long long expectedGeneratio
         for (int d = 1; d <= days(year, m); d++)
         {
             const J& entry = month.key(std::to_string(d));
-            if (entry.kind != J::Arr || entry.a.size() != 6)
+            if (entry.kind != J::Arr || (entry.a.size() != 6 && entry.a.size() != 7))
                 fail("Invalid calendar day");
+            // Seven-entry calendars include Imsak before Fajr and Shuruq.
+            // Six-entry calendars begin with Fajr and Shuruq.
+            const bool hasImsak = entry.a.size() == 7;
             sched << date(year, m, d);
             for (int i : {0, 2, 3, 4, 5})
             {
-                const J& t = entry.idx(i);
+                const J& t = entry.idx(i + (hasImsak ? 1 : 0));
                 if (t.kind != J::Str || !validTime(t.s))
                     fail("Invalid prayer time");
                 sched << '|' << t.s;
@@ -1626,11 +1630,24 @@ static bool Run(const std::wstring& mosque, unsigned long long expectedGeneratio
                 else
                     sched << '-';
             }
-            // Shuruq is calendar index 1; keep it separate from the five prayers.
-            const J& sunrise = entry.idx(1);
+            // Shuruq follows Fajr; seven-entry calendars have an Imsak prefix.
+            const J& sunrise = entry.idx(hasImsak ? 2 : 1);
             if (sunrise.kind != J::Str || !validTime(sunrise.s))
                 fail("Invalid Shuruq time");
             sched << '|' << sunrise.s;
+            // Append optional Imsak after the existing v3 fields.
+            sched << '|';
+            if (hasImsak)
+            {
+                const J& imsak = entry.idx(0);
+                if (imsak.kind != J::Str || !validTime(imsak.s))
+                    fail("Invalid Imsak time");
+                sched << imsak.s;
+            }
+            else
+            {
+                sched << '-';
+            }
             sched << '\n';
         }
     }
@@ -1740,6 +1757,7 @@ struct Prayer
 static bool g_showIqamah = true;
 static bool g_showFajrWindowCountdown = false;
 static int g_shuruqMinute = -1;
+static int g_imsakMinute = -1;
 static int ParseIqamahDelay(const std::wstring& raw, int prayerMinute)
 {
     if (raw.size() >= 2 && raw.size() <= 4 && raw[0] == L'+')
@@ -1953,9 +1971,12 @@ static bool ParseDay(const std::wstring& line, const std::wstring& date, std::ve
                 return false;
             result[i].iqamahDelay = ParseIqamahDelay(item, result[i].minute);
         }
-        // v3 has one additional Shuruq field after the five Iqamah fields.
-        if (std::getline(s, item, L'|') && std::getline(s, item, L'|'))
-            return false;
+        // v3 adds Shuruq; newer caches optionally append Imsak.
+        if (std::getline(s, item, L'|'))
+        {
+            if (std::getline(s, item, L'|') && std::getline(s, item, L'|'))
+                return false;
+        }
     }
     out = result;
     return true;
@@ -1969,7 +1990,7 @@ static int ParseShuruq(const std::wstring& line)
     std::wstring part;
     while (std::getline(stream, part, L'|'))
         fields.push_back(part);
-    if (fields.size() != 12)
+    if (fields.size() != 12 && fields.size() != 13)
         return -1;
     const std::wstring& time = fields[11];
     if (time.size() != 5 || time[2] != L':' ||
@@ -1979,6 +2000,27 @@ static int ParseShuruq(const std::wstring& line)
         time[4] < L'0' || time[4] > L'9')
         return -1;
     int hour = (time[0] - L'0') * 10 + (time[1] - L'0');
+    return hour <= 23 ? hour * 60 + (time[3] - L'0') * 10 + time[4] - L'0' : -1;
+}
+
+static int ParseImsak(const std::wstring& line)
+{
+    // date | five adhan | five Iqamah | Shuruq | optional Imsak.
+    std::vector<std::wstring> fields;
+    std::wistringstream stream(line);
+    std::wstring part;
+    while (std::getline(stream, part, L'|'))
+        fields.push_back(part);
+    if (fields.size() != 13)
+        return -1;
+    const std::wstring& time = fields[12];
+    if (time.size() != 5 || time[2] != L':' ||
+        time[0] < L'0' || time[0] > L'2' ||
+        time[1] < L'0' || time[1] > L'9' ||
+        time[3] < L'0' || time[3] > L'5' ||
+        time[4] < L'0' || time[4] > L'9')
+        return -1;
+    int hour = (time[0] - L'0') * 10 + time[1] - L'0';
     return hour <= 23 ? hour * 60 + (time[3] - L'0') * 10 + time[4] - L'0' : -1;
 }
 
@@ -2010,12 +2052,16 @@ static void LoadSchedule(const SYSTEMTIME& now)
     std::wstring line;
     std::vector<Prayer> previousDay, a, b;
     int sunrise = -1;
+    int imsak = -1;
     while (std::getline(file, line))
     {
         if (previousDay.empty())
             ParseDay(line, yesterday, previousDay);
         if (a.empty() && ParseDay(line, today, a))
+        {
             sunrise = ParseShuruq(line);
+            imsak = ParseImsak(line);
+        }
         if (b.empty())
             ParseDay(line, tomorrow, b);
         if (!previousDay.empty() && !a.empty() && !b.empty())
@@ -2026,6 +2072,7 @@ static void LoadSchedule(const SYSTEMTIME& now)
     g_yesterday = previousDay;
     g_today = a;
     g_shuruqMinute = sunrise;
+    g_imsakMinute = imsak;
     g_tomorrow = b;
     g_loadedDate = today;
 }
@@ -2313,9 +2360,11 @@ static PillPalette ResolvePillPaletteBase(const std::wstring& theme)
     if (theme == L"catppuccin")
         return {Rgb(0x211E32), Rgb(0xCDD6F4), Rgb(0xCFA1FF), Rgb(0xA6ADC8)};
     if (theme == L"emberveil")
-        return {Rgb(0x211E32), Rgb(0xF5E6C8), Rgb(0xFFBC5E), Rgb(0xB8A98A)};
+        return {Rgb(0x171B20), Rgb(0xF5E6C8), Rgb(0xFFBC5E), Rgb(0xD9A441)};
     if (theme == L"emberveil-midnight")
         return {Rgb(0x0A0C0E), Rgb(0xF5E6C8), Rgb(0xFFBC5E), Rgb(0xB8A98A)};
+    if (theme == L"emberveil-daybreak")
+        return {Rgb(0xFFF2D8), Rgb(0x1A1F26), Rgb(0xB87924), Rgb(0x8A642D)};
     if (theme == L"emerald-mosque")
         return {Rgb(0x102B27), Rgb(0xF3E8CF), Rgb(0xD4AF70), Rgb(0xB6C9BD)};
     if (theme == L"dracula")
@@ -2341,9 +2390,17 @@ static PillPalette ResolvePillPaletteBase(const std::wstring& theme)
                                   0xB8A98A))};
     COLORREF c = GetSysColor(COLOR_HIGHLIGHT);
     auto accent = winrt::Windows::UI::Color{255, GetRValue(c), GetGValue(c), GetBValue(c)};
-    if (WindowsLightMode())
-        return {Rgb(0xF2F2F2), Rgb(0x202020), accent, Rgb(0x666666)};
-    return {Rgb(0x292929), Rgb(0xF4F4F4), accent, Rgb(0xB8B8B8)};
+    // Windows/System Default: accent-colored pill with a contrasting foreground.
+    // Preserve the previous transparent-pill treatment when no background is drawn.
+    if (g_backgroundStyle == L"transparent" || g_backgroundOpacity == 0)
+    {
+        if (WindowsLightMode())
+            return {Rgb(0xF2F2F2), Rgb(0x202020), accent, Rgb(0x666666)};
+        return {Rgb(0x292929), Rgb(0xF4F4F4), accent, Rgb(0xB8B8B8)};
+    }
+    // The accent-filled Windows/System pill deliberately uses white text.
+    // Users choosing a very light accent can adjust the text in custom overrides.
+    return {accent, Rgb(0xFFFFFF), Rgb(0xFFFFFF), Rgb(0xFFFFFF)};
 }
 static PillPalette ResolvePillPalette(const std::wstring& theme)
 {
@@ -2420,11 +2477,14 @@ static PopupColors PopupThemeBase()
         return {PopupRgb(0x302D47), PopupRgb(0x58536F), PopupRgb(0xCDD6F4),
                 PopupRgb(0xA6ADC8), PopupRgb(0x58536F), PopupRgb(0xB4BEFE)};
     if (g_theme == L"emberveil")
-        return {PopupRgb(0x1D1D2D), PopupRgb(0x3B3B58), PopupRgb(0xD3D0E8),
-                PopupRgb(0xB8B3D1), PopupRgb(0x424158), PopupRgb(0xA29DBB)};
+        return {PopupRgb(0x171B20), PopupRgb(0x212832), PopupRgb(0xF5E6C8),
+                PopupRgb(0xF5E6C8), PopupRgb(0x212832), PopupRgb(0xD9A441)};
     if (g_theme == L"emberveil-midnight")
         return {PopupRgb(0x101418), PopupRgb(0x353A3E), PopupRgb(0xF5E6C8),
                 PopupRgb(0xB8A98A), PopupRgb(0x353A3E), PopupRgb(0xFFBC5E)};
+    if (g_theme == L"emberveil-daybreak")
+        return {PopupRgb(0xF5E6C8), PopupRgb(0xE2CFA8), PopupRgb(0x1A1F26),
+                PopupRgb(0x6F624F), PopupRgb(0xE2CFA8), PopupRgb(0xB87924)};
     if (g_theme == L"emerald-mosque")
         return {PopupRgb(0x102B27), PopupRgb(0x386057), PopupRgb(0xF3E8CF),
                 PopupRgb(0xB6C9BD), PopupRgb(0x386057), PopupRgb(0xD4AF70)};
@@ -2601,6 +2661,71 @@ static int PopupCornerRadiusPx(int width, int height, UINT dpi)
     return std::clamp(scaled, 0, std::min(width, height) / 2);
 }
 
+// Measure the mosque name with the same GDI font and width used for painting.
+// Bound extreme names to five lines so a malformed title cannot consume the screen.
+static int PopupMosqueNameHeight()
+{
+    HDC dc = GetDC(nullptr);
+    if (!dc)
+        return 20;
+    HFONT font = CreateFontW(-15, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE,
+                             DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
+                             CLEARTYPE_QUALITY, DEFAULT_PITCH, L"Segoe UI");
+    HGDIOBJ oldFont = font ? SelectObject(dc, font) : nullptr;
+    TEXTMETRICW metrics{};
+    GetTextMetricsW(dc, &metrics);
+    const int lineHeight = std::max(1, static_cast<int>(metrics.tmHeight + metrics.tmExternalLeading));
+    RECT bounds{0, 0, 242, 0};
+    DrawTextW(dc, g_mosqueName.c_str(), -1, &bounds,
+              DT_CALCRECT | DT_WORDBREAK | DT_NOPREFIX);
+    if (font)
+    {
+        SelectObject(dc, oldFont);
+        DeleteObject(font);
+    }
+    ReleaseDC(nullptr, dc);
+    return std::clamp(static_cast<int>(bounds.bottom - bounds.top), lineHeight, lineHeight * 5);
+}
+
+struct PopupGeometry
+{
+    int nameHeight;
+    int topRule;
+    int firstRow;
+    int bottomRule;
+    int height;
+};
+
+static PopupGeometry GetPopupGeometry()
+{
+    constexpr int nameTop = 12;
+    constexpr int headerGap = 18;
+    constexpr int rowGap = 18;
+    constexpr int rowHeight = 22;
+    constexpr int scheduleBottomGap = 18;
+    constexpr int footerHeight = 42;
+    PopupGeometry layout{};
+    layout.nameHeight = PopupMosqueNameHeight();
+    // GDI's measured rectangle includes extra font leading for wrapped lines.
+    // Compensate optically without changing the single-line header spacing.
+    // Keep a minimum gap for long names (up to five lines).
+    const int estimatedLines = std::clamp((layout.nameHeight + 17) / 18, 1, 5);
+    const int opticalHeaderGap = std::max(8, headerGap - 4 * (estimatedLines - 1));
+    const bool hijri = !g_hijriDate.empty();
+    layout.topRule = nameTop + layout.nameHeight + (hijri ? 22 : 0) + opticalHeaderGap;
+    layout.firstRow = layout.topRule + rowGap;
+    const int optionalRows = g_showFajrWindowCountdown ?
+        1 + (g_imsakMinute >= 0 ? 1 : 0) : 0;
+    layout.bottomRule = layout.firstRow + (5 + optionalRows) * rowHeight + scheduleBottomGap;
+    layout.height = layout.bottomRule + footerHeight;
+    return layout;
+}
+
+static int PopupLogicalHeight()
+{
+    return GetPopupGeometry().height;
+}
+
 static void PaintPrayerPopup(HWND hwnd)
 {
     PAINTSTRUCT ps{};
@@ -2652,9 +2777,9 @@ static void PaintPrayerPopup(HWND hwnd)
     GetClientRect(hwnd, &client);
     int savedDc = SaveDC(renderDc);
     SetMapMode(renderDc, MM_ANISOTROPIC);
-    SetWindowExtEx(renderDc, 270, 252, nullptr);
+    SetWindowExtEx(renderDc, 270, PopupLogicalHeight(), nullptr);
     SetViewportExtEx(renderDc, client.right - client.left, client.bottom - client.top, nullptr);
-    RECT r{0, 0, 270, 252};
+    RECT r{0, 0, 270, PopupLogicalHeight()};
     auto colors = PopupTheme();
     HBRUSH bg = CreateSolidBrush(colors.bg);
     FillRect(renderDc, &r, bg);
@@ -2698,14 +2823,15 @@ static void PaintPrayerPopup(HWND hwnd)
         DrawTextW(renderDc, value.c_str(), -1, &rect,
                   flags | DT_SINGLELINE | DT_VCENTER | DT_NOPREFIX | DT_END_ELLIPSIS);
     };
-    RECT nameRect{14, 9, r.right - 14, 53};
+    const PopupGeometry layout = GetPopupGeometry();
+    RECT nameRect{14, 12, r.right - 14, 12 + layout.nameHeight};
     SetTextColor(renderDc, colors.text);
     DrawTextW(renderDc, g_mosqueName.c_str(), -1, &nameRect,
-              DT_CENTER | DT_WORDBREAK | DT_NOPREFIX | DT_END_ELLIPSIS);
+              DT_CENTER | DT_WORDBREAK | DT_NOPREFIX | DT_WORD_ELLIPSIS);
     bool hijri = !g_hijriDate.empty();
     if (hijri)
-        line(g_hijriDate, 14, 54, r.right - 14, 19, colors.muted, DT_CENTER);
-    int topRule = hijri ? 85 : 65, bottomRule = r.bottom - 34;
+        line(g_hijriDate, 14, nameRect.bottom + 4, r.right - 14, 18, colors.muted, DT_CENTER);
+    const int topRule = layout.topRule, bottomRule = layout.bottomRule;
     if (g_popupShowSeparators)
     {
         HPEN rule = CreatePen(PS_SOLID, 1, colors.rule);
@@ -2720,11 +2846,38 @@ static void PaintPrayerPopup(HWND hwnd)
             DeleteObject(rule);
         }
     }
-    const int rowCount = g_showFajrWindowCountdown ? 6 : 5;
-    int firstRow = topRule + 12 + ((bottomRule - 12) - (topRule + 12) - rowCount * 22) / 2;
+    // Keep informational Imsak/Shuruq times in the same Adhan column as
+    // prayers whenever an Iqamah suffix column is present.
+    bool hasIqamahColumn = g_showIqamah;
+    if (hasIqamahColumn)
+    {
+        hasIqamahColumn = false;
+        for (const auto& prayer : g_today)
+        {
+            if (!IqamahSuffix(prayer).empty())
+            {
+                hasIqamahColumn = true;
+                break;
+            }
+        }
+    }
+    const int adhanColumnRight = hasIqamahColumn ? r.right - 66 : r.right - 20;
+    const bool showImsak = g_showFajrWindowCountdown && g_imsakMinute >= 0;
+    const int rowCount = 5 + (g_showFajrWindowCountdown ? 1 : 0) + (showImsak ? 1 : 0);
+    const int firstRow = layout.firstRow;
     for (int row = 0; row < rowCount; row++)
     {
-        if (g_showFajrWindowCountdown && row == 1)
+        if (showImsak && row == 0)
+        {
+            wchar_t time[16];
+            swprintf(time, 16, L"%02d:%02d", g_imsakMinute / 60, g_imsakMinute % 60);
+            const int y = firstRow + row * 22;
+            line(L"Imsak", 20, y, r.right - 20, 21, colors.text, DT_LEFT);
+            line(time, 20, y, adhanColumnRight, 21, colors.text, DT_RIGHT);
+            continue;
+        }
+        const int prayerRow = row - (showImsak ? 1 : 0);
+        if (g_showFajrWindowCountdown && prayerRow == 1)
         {
             std::wstring sunrise = L"--:--";
             if (g_shuruqMinute >= 0)
@@ -2734,26 +2887,12 @@ static void PaintPrayerPopup(HWND hwnd)
                 sunrise = b;
             }
             int y = firstRow + row * 22;
-            line(L"Shuruq", 20, y, r.right - 20, 21, colors.muted, DT_LEFT);
+            line(L"Shuruq", 20, y, r.right - 20, 21, colors.text, DT_LEFT);
             // Align Shuruq with the Adhan-time column; keep Iqamah column blank.
-            bool hasIqamahColumn = g_showIqamah;
-            if (hasIqamahColumn)
-            {
-                hasIqamahColumn = false;
-                for (const auto& prayer : g_today)
-                {
-                    if (!IqamahSuffix(prayer).empty())
-                    {
-                        hasIqamahColumn = true;
-                        break;
-                    }
-                }
-            }
-            line(sunrise, 20, y, hasIqamahColumn ? r.right - 66 : r.right - 20,
-                 21, colors.muted, DT_RIGHT);
+            line(sunrise, 20, y, adhanColumnRight, 21, colors.text, DT_RIGHT);
             continue;
         }
-        int i = g_showFajrWindowCountdown && row > 1 ? row - 1 : row;
+        int i = g_showFajrWindowCountdown && prayerRow > 1 ? prayerRow - 1 : prayerRow;
         std::wstring time = L"--:--";
         if (i < (int)g_today.size())
         {
@@ -2776,7 +2915,7 @@ static void PaintPrayerPopup(HWND hwnd)
     if (footerCountdown != L"--:--" && !footerCountdown.empty() && footerCountdown.front() == L'-')
         footerCountdown.erase(0, 1);
 
-    line(g_label + L" in " + footerCountdown, 12, bottomRule + 5, r.right - 12, 24,
+    line(g_label + L" in " + footerCountdown, 12, bottomRule + 8, r.right - 12, 24,
         colors.footer, DT_CENTER);
     SelectObject(renderDc, oldFont);
     DeleteObject(font);
@@ -3127,7 +3266,7 @@ static void DestroyPrayerPopup()
     if (!dpi)
         dpi = 96;
     const double scale = static_cast<double>(dpi) / 96.0;
-    const int w = MulDiv(270, dpi, 96), h = MulDiv(252, dpi, 96);
+    const int w = MulDiv(270, dpi, 96), h = MulDiv(PopupLogicalHeight(), dpi, 96);
     const int edgeGap = MulDiv(11, dpi, 96);
     const int screenMargin = MulDiv(4, dpi, 96);
     bool top = bar.top <= monitor.top + 10;
@@ -4714,7 +4853,7 @@ static DWORD FreshScheduleCacheRemainingMs(const std::wstring& mosque, int hours
             return 0;
         std::string header;
         if (!std::getline(schedule, header) ||
-            header != "# Emberveil Mawaqit schedule v3")
+            header != "# Emberveil Mawaqit schedule v4")
             return 0;
         std::string today = NativeUpdater::date(now.wYear, now.wMonth, now.wDay) + "|";
         bool found = false;
@@ -4882,7 +5021,8 @@ static void LoadModSettings()
            g_showPrimaryMonitor ? 1 : 0, g_showSecondaryMonitors ? 1 : 0, g_position.c_str());
     auto theme = ReadSetting(L"General.Theme");
     if (theme != L"traditional" && theme != L"catppuccin" && theme != L"emberveil" &&
-        theme != L"emberveil-midnight" && theme != L"emerald-mosque" && theme != L"dracula" &&
+        theme != L"emberveil-midnight" && theme != L"emberveil-daybreak" &&
+        theme != L"emerald-mosque" && theme != L"dracula" &&
         theme != L"nord" && theme != L"gruvbox" && theme != L"tokyo-night" &&
         theme != L"solarized-dark" && theme != L"solarized-light" && theme != L"custom")
         theme = L"system";

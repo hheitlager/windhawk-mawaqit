@@ -14,10 +14,10 @@ Bring your mosque’s prayer times to the **Windows 11 taskbar** with a live cou
 
 - Next prayer, scheduled time, and live countdown on your taskbar
 - Clickable prayer schedule popup, with optional hover interaction
-- 13 selectable themes, plus customizable pill and popup colors
+- 14 selectable themes, including Emberveil Daybreak, plus customizable pill and popup colors
 - Five taskbar positions and support for multiple monitors
 - Mawaqit schedule retrieval with local caching
-- **In v0.7.1:** Iqamah suffix and source-scheduled Adhan-to-Iqamah handling (including midnight Isha), automatic pill width, separate popup materials, and expanded appearance controls
+- **In v0.7.1:** Optional Imsak and Shuruq popup rows, source-scheduled Adhan-to-Iqamah handling (including midnight Isha), automatic pill width, dynamically sized mosque headers, expanded theme presets, and separate popup appearance controls
 
 ## Getting started
 
