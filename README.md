@@ -6,9 +6,9 @@ Bring your mosque’s prayer times to the **Windows 11 taskbar** with a live cou
 
 | Windows / System | Traditional Islamic |
 |:---:|:---:|
-| ![Windows theme](screenshots/Mawaqit-Windows-System-Default.png) | ![Traditional Islamic](screenshots/Mawaqit-Traditional-Islamic.png) |
+| ![Windows theme](screenshots/Mawaqit-Windows-System-Default-v071.png) | ![Traditional Islamic](screenshots/Mawaqit-Traditional-Islamic-v071.png) |
 | Catppuccin Mocha | Emberveil |
-| ![Catppuccin](screenshots/Mawaqit-Catppucchin-Moca.png) | ![Emberveil](screenshots/Mawaqit-Emberveil.png) |
+| ![Catppuccin](screenshots/Mawaqit-Catppuccin-Mocha-v071.png) | ![Emberveil](screenshots/Mawaqit-Emberveil-v071.png) |
 
 ## At a glance
 
@@ -33,7 +33,7 @@ Bring your mosque’s prayer times to the **Windows 11 taskbar** with a live cou
 
 See the **[Theme Gallery & Customization Guide](THEMES.md)** for every built-in palette, color-role reference, and mix-and-match examples.
 
-![Desktop integration](screenshots/My-Desktop.png)
+![Desktop integration](screenshots/My-Desktop-v071.png)
 
 ## Guides & project information
 

@@ -8,19 +8,19 @@ The gallery shows the **v0.7.1 preset previews** alongside their source-defined 
 
 | Theme | Pill background | Prayer text | Countdown | Separator | Preview |
 |---|---|---|---|---|---|
-| **Traditional Islamic** | `#123D34` | `#F5EAD3` | `#E4C784` | `#C9B789` | ![Traditional Islamic](screenshots/Mawaqit-Traditional-Islamic.png) |
+| **Traditional Islamic** | `#123D34` | `#F5EAD3` | `#E4C784` | `#C9B789` | ![Traditional Islamic](screenshots/Mawaqit-Traditional-Islamic-v071.png) |
 | **Emerald Mosque** | `#102B27` | `#F3E8CF` | `#D4AF70` | `#B6C9BD` | ![Emerald Mosque](screenshots/Mawaqit-Emerald-Mosque.png) |
-| **Emberveil** | `#171B20` | `#F5E6C8` | `#FFBC5E` | `#D9A441` | ![Emberveil](screenshots/Mawaqit-Emberveil.png) |
+| **Emberveil** | `#171B20` | `#F5E6C8` | `#FFBC5E` | `#D9A441` | ![Emberveil](screenshots/Mawaqit-Emberveil-v071.png) |
 | **Emberveil Midnight** | `#0A0C0E` | `#F5E6C8` | `#FFBC5E` | `#B8A98A` | ![Emberveil Midnight](screenshots/Mawaqit-Emberveil-Midnight.png) |
 | **Emberveil Daybreak** | `#FFF2D8` | `#1A1F26` | `#B87924` | `#8A642D` | ![Emberveil Daybreak](screenshots/Mawaqit-Emberveil-Daybreak.png) |
-| **Catppuccin Mocha** | `#211E32` | `#CDD6F4` | `#CFA1FF` | `#A6ADC8` | ![Catppuccin Mocha](screenshots/Mawaqit-Catppuccin-Mocha.png) |
+| **Catppuccin Mocha** | `#211E32` | `#CDD6F4` | `#CFA1FF` | `#A6ADC8` | ![Catppuccin Mocha](screenshots/Mawaqit-Catppuccin-Mocha-v071.png) |
 | **Dracula** | `#282A36` | `#F8F8F2` | `#BD93F9` | `#6272A4` | ![Dracula](screenshots/Mawaqit-Dracula.png) |
 | **Nord** | `#2E3440` | `#ECEFF4` | `#88C0D0` | `#81A1C1` | ![Nord](screenshots/Mawaqit-Nord.png) |
 | **Gruvbox Dark** | `#282828` | `#EBDBB2` | `#FABD2F` | `#928374` | ![Gruvbox Dark](screenshots/Mawaqit-Gruvbox-Dark.png) |
 | **Tokyo Night** | `#1A1B26` | `#C0CAF5` | `#7AA2F7` | `#565F89` | ![Tokyo Night](screenshots/Mawaqit-Tokyo-Night.png) |
 | **Solarized Dark** | `#002B36` | `#93A1A1` | `#B58900` | `#586E75` | ![Solarized Dark](screenshots/Mawaqit-Solarized-Dark.png) |
 | **Solarized Light** | `#FDF6E3` | `#586E75` | `#268BD2` | `#93A1A1` | ![Solarized Light](screenshots/Mawaqit-Solarized-Light.png) |
-| **Windows / System** | Windows accent | White | White | White | ![Windows / System](screenshots/Mawaqit-Windows-System-Default.png) |
+| **Windows / System** | Windows accent | White | White | White | ![Windows / System](screenshots/Mawaqit-Windows-System-Default-v071.png) |
 
 **Windows / System:** Accent-filled pill with white prayer text, countdown and separators by default. The accent follows Windows highlight; users with pale accents or transparent pill backgrounds can adjust text colors through custom overrides. Live pill refresh on Windows appearance changes is deferred to v0.8.0. **Custom fallback:** pill `#211E32`, prayer `#F5E6C8`, countdown `#FFBC5E`, separator `#B8A98A`.
 
