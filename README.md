@@ -45,6 +45,7 @@ See the **[Theme Gallery & Customization Guide](THEMES.md)** for every built-in 
 | [Changelog](CHANGELOG.md) | Released milestones |
 | [Release notes](RELEASE_NOTES.md) | Detailed release information |
 | [Development](DEVELOPMENT.md) | Source versions, testing, and contributing |
+| [Roadmap](ROADMAP.md) | Planned features, upcoming milestones, and a sneak peek at what's next |
 
 ## Compatibility
 
