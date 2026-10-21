@@ -16,7 +16,7 @@ An update may reorganize settings or change internal configuration keys. Windhaw
 
 1. Open **Windhawk → Mawaqit Prayer Clock → Advanced → Mod settings**.
 2. Copy your settings JSON into a local text file and keep it as a **pre-update backup**.
-3. Review the latest [Release Notes](RELEASE_NOTES.md) for any configuration changes before installing the update.
+3. Review the latest [Release Notes](docs/releases/RELEASE_NOTES.md) for any configuration changes before installing the update.
 
 ### If settings stop working after updating
 
@@ -40,7 +40,7 @@ We aim to preserve core preferences under **General** across normal updates:
 
 These are compatibility priorities, not a guarantee that every future update will preserve every setting unchanged. Advanced appearance, layout, and experimental options may evolve; where changes are necessary, we aim to retain existing values or provide a migration path.
 
-Any update requiring manual configuration changes should be documented in the [Release Notes](RELEASE_NOTES.md) and [Changelog](CHANGELOG.md).
+Any update requiring manual configuration changes should be documented in the [Release Notes](docs/releases/RELEASE_NOTES.md) and [Changelog](docs/releases/CHANGELOG.md).
 
 ## Imsak or Shuruq missing from the popup
 
@@ -72,7 +72,7 @@ To narrow it down:
 2. If you want to keep Blur or Acrylic, try a darker `PopupBackground` color and experiment with the popup opacity setting. The visible result can vary with the desktop background and windows behind the popup.
 3. Check **Advanced → Custom theme settings → PopupBackground** for a saved override. Clear it if you want to use the selected theme's default color instead.
 
-This behavior is a visual limitation of translucent Windows materials, not necessarily a theme parsing error. See [Themes & customization](THEMES.md#light-popup-colors-with-blur-and-acrylic).
+This behavior is a visual limitation of translucent Windows materials, not necessarily a theme parsing error. See [Themes & customization](docs/guides/THEMES.md#light-popup-colors-with-blur-and-acrylic).
 
 ## Iqamah missing or too small (v0.7.1)
 
@@ -84,5 +84,5 @@ The optional Iqamah suffix setting only controls whether the suffix is displayed
 
 Include Windows 11 build, Windhawk version, mod version, taskbar position, monitor count/DPI, relevant settings, and reproducible steps. Attach a screenshot and sanitized Windhawk logs when helpful. Do not share personal paths or sensitive information unnecessarily.
 
-See [CONFIGURATION.md](CONFIGURATION.md) and [DEVELOPMENT.md](DEVELOPMENT.md).
+See [CONFIGURATION.md](CONFIGURATION.md) and [DEVELOPMENT.md](docs/development/DEVELOPMENT.md).
 

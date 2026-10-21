@@ -21,7 +21,7 @@ This release builds on v0.7.0 with scheduled Iqamah support, optional Imsak, aut
 The author confirmed all 10/10 final audit-fix regression checks, including midnight rollover, unavailable Iqamah, primary/secondary taskbars, and unload/reload. Earlier focused checks covered popup materials, borders, auto width, and text alignment. Subsequent visual checks confirmed optional prayer rows, wrapped headers, and Emberveil palettes in tested examples; a consolidated post-merge regression pass has not been reported. This is not a guarantee of compatibility with every Windows 11 build or taskbar modification.
 
 ### Known limitations
-- Light custom popup colors can appear washed out with Blur or Acrylic because of Windows composition. See [Themes](THEMES.md#light-popup-colors-with-blur-and-acrylic) and [Troubleshooting](TROUBLESHOOTING.md#light-popup-background-looks-white-or-washed-out).
+- Light custom popup colors can appear washed out with Blur or Acrylic because of Windows composition. See [Themes](../guides/THEMES.md#light-popup-colors-with-blur-and-acrylic) and [Troubleshooting](../../TROUBLESHOOTING.md#light-popup-background-looks-white-or-washed-out).
 - Dynamic center remains experimental on crowded taskbars.
 - Only published Mawaqit schedule data is used; missing Iqamah times are not fabricated.
 - Localization is a future enhancement, not part of v0.7.1.
@@ -93,7 +93,7 @@ This release builds on v0.6.8.4 and the tested dev-9 baseline. It focuses on sta
 Author regression tests passed for startup, theme and position switching, popup behavior, repeated enable/disable cycles, Explorer restart, and normal shutdown. The final settings-exception safeguard still requires compilation and regression testing. This is not a claim of compatibility with every Windows 11 build or taskbar mod.
 
 ### Installation
-Install or update the source in Windhawk using `src/windhawk-mawaqit.wh.cpp`, compile and enable it, then configure your mosque. See [README.md](README.md) and [CONFIGURATION.md](CONFIGURATION.md).
+Install or update the source in Windhawk using `src/windhawk-mawaqit.wh.cpp`, compile and enable it, then configure your mosque. See [README.md](../../README.md) and [CONFIGURATION.md](../../CONFIGURATION.md).
 
 ### Notes
 - Source release; no precompiled binary.
@@ -132,7 +132,7 @@ Author-tested: all five positions, live position switching, dynamic-center movem
 
 ### Installation
 
-Install Windhawk, create or update the mod using `src/windhawk-mawaqit.wh.cpp`, compile and enable it, then configure your mosque. See [README.md](README.md) and [CONFIGURATION.md](CONFIGURATION.md).
+Install Windhawk, create or update the mod using `src/windhawk-mawaqit.wh.cpp`, compile and enable it, then configure your mosque. See [README.md](../../README.md) and [CONFIGURATION.md](../../CONFIGURATION.md).
 
 ### Notes
 
@@ -168,7 +168,7 @@ Author-tested: settings/behavior (8/8), popup auto-close (6/6), and visual inspe
 
 ### Installation
 
-Install Windhawk, create or update the mod using `src/windhawk-mawaqit.wh.cpp`, compile and enable it, then configure your mosque. See [README.md](README.md) and [CONFIGURATION.md](CONFIGURATION.md).
+Install Windhawk, create or update the mod using `src/windhawk-mawaqit.wh.cpp`, compile and enable it, then configure your mosque. See [README.md](../../README.md) and [CONFIGURATION.md](../../CONFIGURATION.md).
 
 ### Notes
 

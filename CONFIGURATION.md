@@ -74,7 +74,7 @@ All fields default to **empty** and accept optional `#RRGGBB` overrides. Unlike 
 
 When empty, `PillIqamah` and `PillBorder` inherit the **resolved** countdown color. For Windows / System, the accent-filled pill uses white text by default; if you disable its background or choose a pale accent, adjust the foreground colors with overrides. Imsak and Shuruq popup rows use the primary text color; Iqamah offsets use the secondary color. `ShowPillBorder` must be enabled for the pill border to appear.
 
-For all preset colors and examples, see [THEMES.md](THEMES.md). The current Windows / System pill may need a mod reload after switching Windows light/dark mode; automatic live refresh is planned for v0.8.0.
+For all preset colors and examples, see [THEMES.md](docs/guides/THEMES.md). The current Windows / System pill may need a mod reload after switching Windows light/dark mode; automatic live refresh is planned for v0.8.0.
 
 ## Advanced → Mod settings
 

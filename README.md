@@ -31,7 +31,7 @@ Bring your mosque’s prayer times to the **Windows 11 taskbar** with a live cou
 
 ## Make it yours
 
-See the **[Theme Gallery & Customization Guide](THEMES.md)** for every built-in palette, color-role reference, and mix-and-match examples.
+See the **[Theme Gallery & Customization Guide](docs/guides/THEMES.md)** for every built-in palette, color-role reference, and mix-and-match examples.
 
 ![Desktop integration](screenshots/My-Desktop-v071.png)
 
@@ -39,13 +39,13 @@ See the **[Theme Gallery & Customization Guide](THEMES.md)** for every built-in 
 
 | Guide | What you'll find |
 |---|---|
-| [Themes](THEMES.md) | Gallery, full color palettes, and custom overrides |
+| [Themes](docs/guides/THEMES.md) | Gallery, full color palettes, and custom overrides |
 | [Configuration](CONFIGURATION.md) | Settings, valid values, and examples |
 | [Troubleshooting](TROUBLESHOOTING.md) | Common issues and diagnostics |
-| [Changelog](CHANGELOG.md) | Released milestones |
-| [Release notes](RELEASE_NOTES.md) | Detailed release information |
-| [Development](DEVELOPMENT.md) | Source versions, testing, and contributing |
-| [Roadmap](ROADMAP.md) | Planned features, upcoming milestones, and a sneak peek at what's next |
+| [Changelog](docs/releases/CHANGELOG.md) | Released milestones |
+| [Release notes](docs/releases/RELEASE_NOTES.md) | Detailed release information |
+| [Development](docs/development/DEVELOPMENT.md) | Source versions, testing, and contributing |
+| [Roadmap](docs/planning/ROADMAP.md) | Planned features, upcoming milestones, and a sneak peek at what's next |
 
 ## Compatibility
 

@@ -8,6 +8,7 @@
 // @include         explorer.exe
 // @architecture    x86-64
 // @compilerOptions -lole32 -loleaut32 -lruntimeobject -lshell32 -luuid -lgdi32 -lwinhttp
+// @license         MIT
 // ==/WindhawkMod==
 
 
