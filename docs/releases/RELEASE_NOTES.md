@@ -1,6 +1,6 @@
 # Mawaqit Prayer Clock v0.7.1
 
-**Author-tested source release — pending upstream Windhawk update**
+**Accepted upstream and available in the Windhawk catalog — 21 October 2026**
 
 This release builds on v0.7.0 with scheduled Iqamah support, optional Imsak, automatic pill sizing, adaptive popup layouts, and expanded appearance controls. Prayer and Iqamah times come from the selected mosque's published Mawaqit schedule; the mod does not estimate unavailable Iqamah times.
 
@@ -28,16 +28,16 @@ The author confirmed all 10/10 final audit-fix regression checks, including midn
 - The Windows/System pill may not refresh immediately when switching Windows light/dark mode; live appearance refresh is planned for v0.8.0.
 - Imsak only appears if the selected mosque provides it in its schedule.
 
-### Installation
-Use `src/windhawk-mawaqit.wh.cpp` in Windhawk's mod editor, compile, enable, and configure your mosque. Existing settings should be reviewed after upgrading. This repository commit does not itself update the upstream Windhawk catalog.
+### Installation and upgrade
+Install or update **Mawaqit** through the Windhawk catalog, then configure your mosque. Review existing settings after upgrading. For manual source installation, use [`src/windhawk-mawaqit.wh.cpp`](../../src/windhawk-mawaqit.wh.cpp) in Windhawk's mod editor.
 
 ---
 
 # Mawaqit Prayer Clock v0.7.0
 
-**Multi-monitor release candidate — author-tested**
+**Multi-monitor release — accepted upstream on 18 October 2026**
 
-This release candidate adds a prayer clock to secondary Windows 11 taskbars, with independent primary/secondary visibility and the same five positioning choices on both displays. It preserves the existing Mawaqit schedule retrieval, caching, themes, and popup behavior.
+This release adds a prayer clock to secondary Windows 11 taskbars, with independent primary/secondary visibility and the same five positioning choices on both displays. It preserves the existing Mawaqit schedule retrieval, caching, themes, and popup behavior.
 
 ### Highlights
 - Native XAML clock on primary and secondary taskbars.
@@ -56,10 +56,10 @@ This release candidate adds a prayer clock to secondary Windows 11 taskbars, wit
 - Schedule retrieval depends on Mawaqit's public website and published data.
 
 ### Installation and upgrade
-Use `src/windhawk-mawaqit.wh.cpp` in Windhawk's mod editor, compile, enable, and configure the mosque identifier. Existing setting keys are retained; the new `General.ShowPrimaryMonitor` and `General.ShowSecondaryMonitors` switches default to enabled. This is a source release; no precompiled binary is provided.
+Use [`src/windhawk-mawaqit.wh.cpp`](../../src/windhawk-mawaqit.wh.cpp) in Windhawk's mod editor, compile, enable, and configure the mosque identifier. Existing setting keys are retained; the new `General.ShowPrimaryMonitor` and `General.ShowSecondaryMonitors` switches default to enabled. This is a source release; no precompiled binary is provided.
 
-### Status
-Release candidate for review, not a final v0.7.0 release. The author reports successful compilation and functional testing of the formatted `dev.7f.1` baseline, including Explorer restart recovery. Packaging changed only the Windhawk `@version` metadata in C++; this RC-specific metadata edit has not been independently compiled in this environment. Upstream Windhawk acceptance remains subject to maintainer review.
+### Historical validation and status
+The v0.7.0 release was accepted upstream on 18 October 2026. During release-candidate testing, the author reported successful compilation and functional testing of the formatted `dev.7f.1` baseline, including Explorer restart recovery. The final candidate packaging changed only Windhawk `@version` metadata; that metadata-only edit was not independently compiled in the review environment.
 
 ---
 
@@ -98,7 +98,7 @@ Install or update the source in Windhawk using `src/windhawk-mawaqit.wh.cpp`, co
 ### Notes
 - Source release; no precompiled binary.
 - Unofficial community project, not affiliated with Mawaqit.
-- Upstream Windhawk submission remains subject to maintainer review.
+- At the time of these release notes, upstream Windhawk submission was still subject to maintainer review.
 
 ---
 

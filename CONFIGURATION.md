@@ -1,6 +1,6 @@
 # Configuration reference
 
-This reference covers the **v0.7.1 repository source release**. The accepted upstream Windhawk v0.7.0 may not expose all controls until the catalog is updated. Configure options in Windhawk's normal **Settings** tab; Advanced → Mod settings provides the underlying JSON if needed. Back up your existing JSON before editing it.
+This reference covers **v0.7.1**, available in the Windhawk catalog. Configure options in Windhawk's normal **Settings** tab; Advanced → Mod settings provides the underlying JSON if needed. Back up your existing JSON before editing it.
 
 ## Finding your mosque
 

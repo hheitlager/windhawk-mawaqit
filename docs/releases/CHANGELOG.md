@@ -28,11 +28,11 @@ Notable changes to Mawaqit Prayer Clock are documented here.
 
 ### Validation
 - Final author-run audit regression checks: 10/10 passed.
-- Source release; upstream Windhawk catalog update is separate.
+- Accepted, merged, and published in the upstream Windhawk catalog on 21 October 2026.
 - Additional focused visual checks covered wrapped mosque names, optional prayer rows, and Emberveil presets; consolidated regression results are not yet documented here.
 - Known limitation: Windows/System pill may not refresh immediately on Windows appearance changes (planned for v0.8.0).
 
-## [0.7.0] — Multi-monitor release candidate
+## [0.7.0] — Multi-monitor support
 
 ### Added
 - Independent clock visibility for primary and secondary Windows 11 taskbars.
@@ -51,7 +51,7 @@ Notable changes to Mawaqit Prayer Clock are documented here.
 ### Validation and limitations
 - All 26 author-run functional regression checks passed on the tested dual-monitor setup.
 - Narrow or crowded taskbars, particularly portrait layouts and configurations with other taskbar mods, may not have enough room for some positions.
-- Broader Windows 11 build compatibility has not been established. Source-only RC; no precompiled binary.
+- Broader Windows 11 build compatibility has not been established. The author-tested release candidate was subsequently accepted upstream; no standalone precompiled binary was provided.
 
 ## [0.6.9] — Reliability and release-candidate hardening
 
@@ -73,7 +73,7 @@ Notable changes to Mawaqit Prayer Clock are documented here.
 - Mawaqit remains the source of prayer times. The mod does not calculate or fabricate unavailable future schedules.
 - Dynamic center remains experimental and may overlap taskbar elements.
 - Author regression tests passed for settings, enable/disable cycles, Explorer restart, and popup behavior; a taskbar XAML-only recreation and the actual New Year transition have not been conclusively exercised.
-- External network access to `mawaqit.net` is documented; upstream Windhawk acceptance remains subject to maintainer review.
+- External network access to `mawaqit.net` is documented. At the time of these release notes, upstream acceptance was still pending.
 
 ## [0.6.8] - Selectable taskbar positions
 

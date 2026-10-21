@@ -4,21 +4,18 @@ This document outlines the development workflow, versioning conventions, and rel
 
 ## Source of Truth
 
-- **Accepted release:** v0.7.0, accepted upstream on 18 October 2026.
-- **Current development baseline:** v0.7.1, maintained by the project author. Verify the source filename and Windhawk `@version` before publishing.
+- **Latest accepted release at this update:** v0.7.1, accepted upstream on 21 October 2026.
+- **Next planned milestone:** v0.8.0. Confirm the current milestone against the [roadmap](../planning/ROADMAP.md) and release history before publishing.
 - **Canonical source:** `src/windhawk-mawaqit.wh.cpp`. Update this file only when preparing a deliberate release. Keep development changes separate until ready.
     
 Historical release files should remain preserved.
 
-## Current Implementation Notes
+## Implementation Considerations
 
-The following notes apply to the v0.7.1 development baseline:
-
-- **Calendar parsing:** Supports verified six- and seven-entry day layouts, including optional Imsak entries. Cache format v4 invalidates incompatible older mappings.
-- **Prayer display:** `Display.ShowFajrWindowCountdown` remains the stored setting key, while the interface labels it **Show Shuruq and Imsak**.
-- **Popup layout:** Wrapped mosque names are measured dynamically, with layout adjustments based on available rows. Verify across different font sizes and DPI settings.
-- **Themes:** Windows/System accent pill and Emberveil Daybreak are included. The pill appearance-change refresh limitation is tracked in [ROADMAP.md](https://chatgpt.com/planning/ROADMAP.md).
-    
+- **Calendar parsing:** Preserve support for verified six- and seven-entry day layouts, including optional Imsak data. Validate cache compatibility when changing the parser or storage format.
+- **Prayer display:** Preserve existing stored setting keys where possible, even when user-facing labels change.
+- **Popup layout:** Test wrapped mosque names and varying row counts across font sizes and DPI settings.
+- **Themes:** Check both pill and popup appearance, including Windows accent colors, material effects, and custom overrides. See the [roadmap](../planning/ROADMAP.md) for planned improvements.
 
 ## Development Workflow
 
@@ -66,10 +63,25 @@ Before publishing:
     
 Keep the release process lightweight and proportional to the changes.
 
-## Historical Reviews
+## Code Review Guidelines
 
-Earlier review documents are retained for reference:
-- [REVIEW.md](https://chatgpt.com/c/REVIEW.md)
-- [AGENT_REVIEW.md](https://chatgpt.com/c/AGENT_REVIEW.md) 
+Use these guidelines for human and AI-assisted reviews. Apply checks proportionally to the change; do not treat a checklist as proof of a successful test.
 
-These documents describe earlier candidates and do not constitute approval of the current release.
+- **Correctness and regressions:** Check the changed behavior against existing prayer display, Adhan/Iqamah transitions, popup interactions, settings compatibility, and monitor positioning.
+- **Security and network:** Review mosque URL normalization, HTTPS/WinHTTP requests, timeouts, parsing of untrusted responses, cache validity, and failure handling.
+- **Lifetime and threading:** Inspect HWND and XAML UI-thread ownership, event-token cleanup, timers, worker shutdown, and GDI/DC/resource release, especially during mod reloads, Explorer restarts, and taskbar rebuilds.
+- **Appearance:** Test theme presets and custom color overrides, foreground contrast, pill/popup materials and opacity, DPI scaling, and top/bottom taskbar layouts. Do not silently alter author-tested defaults or user-selected colors without a demonstrated reason.
+- **Performance:** Check periodic countdown and layout updates for unnecessary work or excessive logging.
+- **Release readiness:** Verify Windhawk metadata and build conventions, settings YAML, links/screenshots, credits/license, and documentation consistency.
+
+### Suggested Regression Coverage
+
+- **Themes:** Representative light and dark presets, Windows/System, Custom, empty/partial/full overrides, and invalid color values.
+- **Materials:** Solid, Transparent, Blur, and Acrylic; pill and popup independently where supported.
+- **Popup:** Click and hover interactions, dismissal timers, long mosque names, changing prayer rows, and varying DPI.
+- **Schedules:** Valid/invalid mosque IDs, fresh/stale cache, offline mode, failed fetch/retry, year boundaries, and source-provided Iqamah times crossing midnight.
+- **Taskbar:** Primary and secondary monitors, all supported positions, display reconnect, taskbar rebuild, Explorer restart, repeated enable/disable, and sleep/resume.
+
+### Review Reporting
+
+Report actionable findings with severity, relevant source locations, expected versus observed behavior, and reproduction steps where available. Distinguish **static inspection**, **successful compilation**, **author-reported testing**, and **independently executed runtime tests**. Do not claim a release is approved solely because a review checklist was completed. Avoid unrelated refactoring when reviewing a focused change.

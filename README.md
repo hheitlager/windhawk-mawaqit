@@ -2,7 +2,7 @@
 
 Bring your mosque’s prayer times to the **Windows 11 taskbar** with a live countdown, a prayer schedule popup, and customizable themes. An unofficial [Windhawk](https://windhawk.net/) mod.
 
-**Status:** v0.7.0 accepted into Windhawk · v0.7.1 source release available in this repository (upstream update pending)
+**Status:** v0.7.1 accepted, merged, and available in the Windhawk catalog.
 
 | Windows / System | Traditional Islamic |
 |:---:|:---:|
@@ -17,7 +17,7 @@ Bring your mosque’s prayer times to the **Windows 11 taskbar** with a live cou
 - 14 selectable themes, including Emberveil Daybreak, plus customizable pill and popup colors
 - Five taskbar positions and support for multiple monitors
 - Mawaqit schedule retrieval with local caching
-- **In v0.7.1:** Optional Imsak and Shuruq popup rows, source-scheduled Adhan-to-Iqamah handling (including midnight Isha), automatic pill width, dynamically sized mosque headers, expanded theme presets, and separate popup appearance controls
+- **v0.7.1 features:** Optional Imsak and Shuruq popup rows, source-scheduled Adhan-to-Iqamah handling (including midnight Isha), automatic pill width, dynamically sized mosque headers, expanded theme presets, and separate popup appearance controls
 
 ## Getting started
 
