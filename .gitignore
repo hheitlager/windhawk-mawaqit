@@ -1,4 +1,16 @@
+# Local development snapshots
+/development/
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+*~
+
 # Build artifacts
+/build/
+/dist/
+/out/
 *.exe
 *.dll
 *.obj
@@ -6,8 +18,8 @@
 *.pdb
 *.log
 
-# Local editor files
+# Editor and operating system files
+.vs/
 .vscode/
-.idea/
-.DS_Store
 Thumbs.db
+.DS_Store
