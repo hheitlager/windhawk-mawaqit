@@ -5,7 +5,7 @@ This document outlines the development workflow, versioning conventions, and rel
 ## Source of Truth
 
 - **Latest accepted release at this update:** v0.7.1, accepted upstream on 21 October 2026.
-- **Next planned milestone:** v0.8.0. Confirm the current milestone against the [roadmap](../planning/ROADMAP.md) and release history before publishing.
+- **Current milestone:** v0.8.0 is feature complete and in final testing; see the [roadmap](../planning/ROADMAP.md).
 - **Canonical source:** `src/windhawk-mawaqit.wh.cpp`. Update this file only when preparing a deliberate release. Keep development changes separate until ready.
     
 Historical release files should remain preserved.
@@ -21,7 +21,7 @@ Historical release files should remain preserved.
 
 1. Keep development changes separate from the accepted release baseline.
 2. Make focused changes and review settings YAML for duplicate keys.
-3. Test compilation, settings migration, live updates, monitor positioning, popup appearance, offline/cache behavior, and Explorer reload where applicable.
+3. Test compilation, upgrade behavior, live updates, monitor positioning, popup appearance, offline/cache behavior, and Explorer reload where applicable. Record manual migration limits clearly when no helper is shipped.
 4. Update affected documentation when functionality or behavior changes.
 5. Record what was actually tested versus statically reviewed. Local testing does not guarantee compatibility across all Windows 11 builds.
     
@@ -46,7 +46,7 @@ Mawaqit follows [Semantic Versioning](https://semver.org/) using `MAJOR.MINOR.PA
 - New features increment MINOR; fixes increment PATCH. Lower-order version components reset to zero.
 - Before `1.0.0`, breaking changes are permitted but must be documented, especially when existing settings or user configurations are affected.
 - After `1.0.0`, incompatible changes require a MAJOR release.
-- Development builds use the `-dev.N` suffix. Separate alpha, beta, and release-candidate stages are not required.
+- Windhawk metadata uses a supported development version during testing and the final numeric version when publishing. Do not put internal testing labels into `@version` metadata or public release documentation.
 - Keep Windhawk version metadata, GitHub release tags, and release documentation consistent.
 - Existing releases retain their original version numbers. These conventions apply to future releases.
     
@@ -57,9 +57,10 @@ Mawaqit follows [Semantic Versioning](https://semver.org/) using `MAJOR.MINOR.PA
 Before publishing:
 1. Confirm the version number matches the scope of the changes.
 2. Complete relevant compilation and regression testing.
-3. Update the changelog, release notes, and affected user documentation.
-4. Document breaking changes, known issues, and settings migration requirements.
-5. Update the canonical release source and version metadata when ready to publish.
+3. Verify the exact Windhawk source metadata and ensure it uses a version accepted by Windhawk.
+4. Update the changelog, release notes, and affected user documentation.
+5. Document breaking changes, known issues, and settings migration requirements; distinguish built-in migration from separate optional tools.
+6. Update the canonical release source and numeric version metadata when ready to publish.
     
 Keep the release process lightweight and proportional to the changes.
 

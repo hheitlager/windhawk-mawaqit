@@ -1,6 +1,24 @@
 # Changelog
 Notable changes to Mawaqit Prayer Clock are documented here.
 
+## [Unreleased] — v0.8.0
+
+The v0.8.0 feature set is complete and undergoing final testing. This section summarizes the planned release; it is not a claim that v0.8.0 is already available in the Windhawk catalog.
+
+### Added
+- 12-hour and 24-hour prayer-time formats with optional AM/PM, a mosque icon option, a Monochrome theme, border opacity, expanded theme color overrides, and a configurable popup hover-open delay.
+- Popup click pinning and hover intent, plus improved taskbar placement and dynamic-center space handling.
+- Separate pill and popup typography, updated appearance controls, and 26 predefined themes.
+
+### Changed
+- Reorganized the settings hierarchy and raised the minimum fixed pill width to 190 px; automatic width remains available.
+- Upgrades retain the mosque identifier, selected theme, and taskbar position. Other v0.7.1 settings use the v0.8.0 defaults.
+
+### Upgrade notes
+- The v0.8.0 settings structure does not automatically migrate other v0.7.1 preferences. Back up settings and reapply preferences manually.
+- The optional PowerShell migration helper discussed during development is not bundled with the release.
+- The exact release version remains under final testing; this changelog entry should be finalized when v0.8.0 is published.
+
 ## [0.7.1] — Iqamah schedule and appearance improvements
 
 ### Added
@@ -51,9 +69,9 @@ Notable changes to Mawaqit Prayer Clock are documented here.
 ### Validation and limitations
 - All 26 author-run functional regression checks passed on the tested dual-monitor setup.
 - Narrow or crowded taskbars, particularly portrait layouts and configurations with other taskbar mods, may not have enough room for some positions.
-- Broader Windows 11 build compatibility has not been established. The author-tested release candidate was subsequently accepted upstream; no standalone precompiled binary was provided.
+- Broader Windows 11 build compatibility has not been established. The author-tested build was subsequently accepted upstream; no standalone precompiled binary was provided.
 
-## [0.6.9] — Reliability and release-candidate hardening
+## [0.6.9] — Reliability and pre-release hardening
 
 ### Improved
 - Reuse a fresh, matching Mawaqit schedule cache after Explorer restarts instead of downloading unnecessarily.

@@ -1,3 +1,26 @@
+# Mawaqit Prayer Clock v0.8.0 — upcoming
+
+v0.8.0 is feature complete and undergoing final testing. The latest public Windhawk catalog release remains v0.7.1. These notes describe the planned update and should be finalized against the exact published build.
+
+### Highlights
+- Reorganized settings and expanded appearance controls, including pill and popup typography, border opacity, and additional color override roles.
+- Added 12-hour time with optional AM/PM, a mosque icon choice, the Monochrome theme, and 26 predefined themes.
+- Improved popup hover behavior with a configurable open delay, click pinning, and auto-close behavior that respects pointer use.
+- Added attached pill/popup layouts and improved placement behavior across taskbar positions and monitors.
+- Popup text rendering retains smoothing at different popup scales and Windows display scaling.
+
+### Upgrade from v0.7.1
+
+Back up your settings before updating. The v0.8.0 settings structure preserves the mosque identifier, selected theme, and taskbar position. Other appearance, layout, display, popup, and custom-color settings are reset to v0.8.0 defaults and must be reapplied manually.
+
+The optional PowerShell migration helper discussed during development is **not included** with v0.8.0. Do not expect the mod or release package to migrate the other v0.7.1 settings automatically.
+
+### Testing and release status
+
+The development build was tested across time formats, boundary times, pill sizing, fonts, popup scaling, Windows scaling, extra rows, and live setting changes. The source was also tested across the main taskbar positions and popup/theme combinations. Final compilation and smoke testing of the exact release source remain part of the release gate. These tests do not guarantee compatibility with every Windows 11 build or taskbar modification.
+
+---
+
 # Mawaqit Prayer Clock v0.7.1
 
 **Accepted upstream and available in the Windhawk catalog — 21 October 2026**
@@ -59,7 +82,7 @@ This release adds a prayer clock to secondary Windows 11 taskbars, with independ
 Use [`src/windhawk-mawaqit.wh.cpp`](../../src/windhawk-mawaqit.wh.cpp) in Windhawk's mod editor, compile, enable, and configure the mosque identifier. Existing setting keys are retained; the new `General.ShowPrimaryMonitor` and `General.ShowSecondaryMonitors` switches default to enabled. This is a source release; no precompiled binary is provided.
 
 ### Historical validation and status
-The v0.7.0 release was accepted upstream on 18 October 2026. During release-candidate testing, the author reported successful compilation and functional testing of the formatted `dev.7f.1` baseline, including Explorer restart recovery. The final candidate packaging changed only Windhawk `@version` metadata; that metadata-only edit was not independently compiled in the review environment.
+The v0.7.0 release was accepted upstream on 18 October 2026. During pre-release testing, the author reported successful compilation and functional testing of the formatted `dev.7f.1` baseline, including Explorer restart recovery. The final source packaging changed only Windhawk `@version` metadata; that metadata-only edit was not independently compiled in the review environment.
 
 ---
 

@@ -1,87 +1,131 @@
 # Configuration reference
 
-This reference covers **v0.7.1**, available in the Windhawk catalog. Configure options in Windhawk's normal **Settings** tab; Advanced → Mod settings provides the underlying JSON if needed. Back up your existing JSON before editing it.
+This guide describes the planned **v0.8.0** settings. The update is still in final testing; v0.7.1 remains the latest public catalog release. Configure options in Windhawk’s normal **Settings** tab. The names below are the setting paths within their groups.
 
-## Finding your mosque
-
-If you do not know your mosque’s Mawaqit page, [search Google for a Mawaqit mosque near you](https://www.google.com/search?q=mawaqit+mosque+near+me). Open a result for your mosque on [Mawaqit](https://mawaqit.net/) and copy either the **full Mawaqit URL** or its **mosque ID** (the final URL segment) into **General → Mosque**.
-
-For example, both `https://mawaqit.net/en/al-haram-makkah-saudi-arabia` and `al-haram-makkah-saudi-arabia` identify the same mosque. The Google search helps locate a page; it does not replace the Mawaqit URL or ID in the setting.
-
-![Mawaqit URL and mosque ID](screenshots/Mawaqit-Mosque-Identifier.png)
+> **Upgrading from v0.7.1:** back up your settings first. The new structure preserves your mosque identifier, selected theme, and taskbar position. Other display, layout, appearance, popup, and custom-color settings reset to the v0.8 defaults. There is no migration helper bundled with this release; reapply other preferences manually.
 
 ## General
 
-| Setting | Values / purpose |
-|---|---|
-| `Mosque` | Mawaqit mosque slug or full URL |
-| `Theme` | `system`, `traditional`, `catppuccin`, `emberveil`, `emberveil-midnight`, `emberveil-daybreak`, `emerald-mosque`, `dracula`, `nord`, `gruvbox`, `tokyo-night`, `solarized-dark`, `solarized-light`, `custom` |
-| `Position` | `before-tray`, `after-tray`, `before-icons`, `after-icons`, `center` (experimental) |
+| Setting | Default | Values / purpose |
+|---|---:|---|
+| `Mosque` | `al-haram-makkah-saudi-arabia` | Mawaqit mosque identifier or full URL |
+| `Theme` | `system` | `system`, `monochrome`, `traditional`, `catppuccin`, `catppuccin-latte`, `emberveil`, `emberveil-midnight`, `emberveil-daybreak`, `emerald-mosque`, `dracula`, `dracula-light`, `nord`, `nord-light`, `gruvbox`, `gruvbox-light`, `tokyo-night`, `tokyo-night-day`, `solarized-dark`, `solarized-light`, `rose-pine`, `everforest`, `synthwave-84`, `flexoki`, `kanagawa`, `ayu`, `one-dark`, `custom` |
+| `AutomaticTheme` | `false` | Switch between supported light/dark counterparts when Windows appearance changes |
+| `Position` | `before-tray` | `before-tray`, `after-tray`, `before-start`, `before-icons`, `after-icons`, `center` (experimental) |
+| `TimeFormat` | `24h` | `24h` or `12h`; affects scheduled times, not countdowns or Iqamah offsets |
+| `ShowAmPm` | `true` | Show AM/PM for 12-hour times; ignored in 24-hour format |
 
-## Display settings
+To find your mosque, open its page on [Mawaqit](https://mawaqit.net/) and copy the full URL or final URL segment into `Mosque`.
+
+## Taskbar pill
+
+### Monitors
 
 | Setting | Default | Meaning |
-|---|---|---|
-| `ShowNextPrayer` | true | Prayer name and time |
-| `ShowCountdown` | true | Main countdown |
-| `ShowIqamahTime` | true | Iqamah suffix and popup delay information |
-| `ShowFajrWindowCountdown` | false | **Show Shuruq and Imsak** in the UI. Adds Shuruq and optional mosque-provided Imsak rows to the popup; after Fajr, counts down to Shuruq. Imsak is informational, not a prayer countdown. Existing setting key is retained. |
-| `ShowPrimaryMonitor` | true | Show clock on primary taskbar |
-| `ShowSecondaryMonitors` | true | Show clocks on secondary taskbars |
+|---|---:|---|
+| `ShowPrimaryMonitor` | `true` | Show the clock on the primary taskbar |
+| `ShowSecondaryMonitors` | `false` | Also show it on secondary taskbars |
 
-## Advanced → Layout settings
-
-| Setting | Default | Valid values / notes |
-|---|---|---|
-| `Width` | 0 | 0 automatically sizes the pill; fixed width 180–400 px |
-| `PillHeight` | 0 | 0 automatic, otherwise 1–100 px |
-| `Margins` | `0, 0, 0, 0` | left, top, right, bottom; −100 to 100 each |
-| `Padding` | `0, 0, 0, 0` | left, top, right, bottom; 0–100 each |
-| `TrayGap` | 5 | 0–100 px |
-| `CornerRadius` | 13 | 0–30 px |
-| `BackgroundStyle` | `solid` | `solid`, `transparent`, `blur`, `acrylic` |
-| `BackgroundOpacity` | 100 | 0–100% |
-| `ShowPillBorder` | false | 1 px accent border |
-| `TextShadow` | false | Subtle pill text shadow |
-| `FontSize` | 15 | 10–24 px |
-| `IqamahFontScale` | 80 | 50–100% of pill font size |
-
-## Advanced → Popup appearance
+### Layout
 
 | Setting | Default | Values / meaning |
-|---|---|---|
-| `EnablePopup` | true | Enable popup |
-| `OpenPopupOnHover` | false | Hover opens popup |
-| `HoverCloseDelayMs` | 500 | 0–5000 ms |
-| `PopupAutoCloseSeconds` | 5 | 0 disabled; 1–300 seconds |
-| `BackgroundStyle` | `follow-pill` | `follow-pill`, `solid`, `transparent`, `blur`, `acrylic` |
-| `BackgroundOpacity` | -1 | -1 follows pill; 0–100 independently |
-| `ShowBorder` | true | Popup border visibility |
-| `ShowSeparators` | true | Popup divider visibility |
+|---|---:|---|
+| `Style` | `floating` | `floating` or `attached` to the taskbar |
+| `Width` | `0` | `0` sizes automatically; fixed width is 190–400 px |
+| `Height` | `0` | `0` follows taskbar height; otherwise 1–100 px |
+| `Margins` | `0, 0, 0, 0` | Left, top, right, bottom offsets; −100 to 100 px each |
+| `Padding` | `0, 0, 0, 0` | Inner spacing in left, top, right, bottom order; 0–100 px each |
 
-## Advanced → Custom theme settings
+### Content
 
-All fields default to **empty** and accept optional `#RRGGBB` overrides. Unlike older releases, **overrides apply to any selected preset**. Empty or invalid values inherit the selected theme. The `custom` theme has its own built-in fallback palette.
+| Setting | Default | Values / meaning |
+|---|---:|---|
+| `ShowNextPrayer` | `name` | `none`, `name`, `icon`, or `both` |
+| `NextPrayerIconStyle` | `prayer-period` | `prayer-period` or `mosque`; used when the selected next-prayer display includes an icon |
+| `ShowCountdown` | `true` | Show time remaining until the next prayer |
+| `ShowIqamahTime` | `true` | Show published Iqamah delays beside the countdown and in the popup |
+| `ShowFajrWindowCountdown` | `false` | Add Shuruq and mosque-provided Imsak rows; after Fajr, count down to Shuruq. Imsak is informational. |
+| `HijriDate` | `off` | `off`, `numeric`, or `full` in the pill |
 
-| Pill | Popup |
+### Typography
+
+| Setting | Default | Values / meaning |
+|---|---:|---|
+| `FontWeight` | `normal` | `normal`, `medium`, `semibold`, or `bold` |
+| `FontSize` | `15` | 10–24 px |
+| `IqamahFontScale` | `80` | Iqamah suffix size as 50–100% of pill font size |
+| `TextShadow` | `false` | Add a subtle shadow behind pill text |
+
+### Appearance
+
+| Setting | Default | Values / meaning |
+|---|---:|---|
+| `BackgroundStyle` | `solid` | `solid`, `transparent`, `blur`, or `acrylic` |
+| `BackgroundOpacity` | `100` | 0–100%; effects may render differently with Windows composition |
+| `CornerRadius` | `13` | 0–30 px |
+| `ShowBorder` | `false` | Show a pill border; attached layout draws only the left and right edges |
+| `BorderOpacity` | `20` | Border opacity, 0–100%; applies when the border is enabled |
+
+## Popup
+
+### Behavior
+
+| Setting | Default | Values / meaning |
+|---|---:|---|
+| `Enabled` | `true` | Enable the prayer schedule popup |
+| `OpenOnHover` | `true` | Allow the popup to open from hovering over the pill |
+| `AutoCloseSeconds` | `5` | 0 disables; otherwise 1–300 seconds outside the pill and popup |
+| `HoverOpenDelayMs` | `500` | 0–5000 ms before hover opens; leaving or pressing a mouse button cancels the pending open |
+| `HoverCloseDelayMs` | `500` | 0–5000 ms after leaving both pill and popup |
+
+Hover-opened popups close after the pointer leaves both the pill and popup. Clicking the pill or interacting with the popup pins it. Auto-close does not run down while the pointer is using the popup.
+
+### Layout
+
+| Setting | Default | Values / meaning |
+|---|---:|---|
+| `Placement` | `floating` | `floating` or `attached` to the pill |
+| `AttachedCornerStyle` | `adaptive` | `adaptive`, `rounded`, or `square` |
+| `ScalePercent` | `100` | 50–200%; scales the popup as a whole |
+
+### Content
+
+| Setting | Default | Meaning |
+|---|---:|---|
+| `ShowPrayerIcons` | `true` | Show an icon beside each prayer |
+| `HighlightNextPrayer` | `true` | Highlight the upcoming prayer |
+| `ShowNextPrayerBorder` | `true` | Draw a border around the upcoming prayer row |
+| `HighlightOpacity` | `20` | Highlight strength, 0–100% |
+| `BoldNextPrayer` | `true` | Use bold text for the upcoming prayer |
+| `HijriDate` | `full` | `off`, `numeric`, or `full` |
+
+### Appearance and typography
+
+| Setting | Default | Values / meaning |
+|---|---:|---|
+| `BackgroundStyle` | `follow-pill` | `follow-pill`, `solid`, `transparent`, `blur`, or `acrylic` |
+| `BackgroundOpacity` | `-1` | `-1` follows pill opacity; otherwise 0–100% |
+| `ShowBorder` | `true` | Show the popup outline |
+| `ShowSeparators` | `true` | Show popup divider lines |
+| `FontSize` | `15` | Popup base font size, 10–24 px; larger text expands the layout |
+| `FontWeight` | `normal` | `normal`, `medium`, `semibold`, or `bold` |
+| `TextShadow` | `false` | Add a subtle shadow behind popup text |
+
+## Theme color overrides
+
+All values are empty by default and accept `#RRGGBB` or `RRGGBB` (six hexadecimal digits). Surrounding whitespace is ignored. Empty or invalid values inherit the resolved theme color. Nonempty overrides apply to any selected theme until cleared.
+
+| Group | Available color roles |
 |---|---|
-| `PillBackground` | `PopupBackground` |
-| `PillText` | `PopupBorder` |
-| `PillSeparator` | `PopupText` |
-| `PillCountdown` | `PopupMuted` |
-| `PillIqamah` | `PopupRule` |
-| `PillBorder` | `PopupFooter` |
+| `Pill` | `Background`, `Border`, `Icon`, `Text`, `Countdown`, `Iqamah`, `HijriDate`, `Separator` |
+| `Popup` | `Background`, `Border`, `MosqueName`, `HijriDate`, `Icon`, `Text`, `Muted`, `Iqamah`, `Rule`, `NextPrayerBackground`, `NextPrayerBorder`, `NextPrayerText`, `Footer` |
 
-When empty, `PillIqamah` and `PillBorder` inherit the **resolved** countdown color. For Windows / System, the accent-filled pill uses white text by default; if you disable its background or choose a pale accent, adjust the foreground colors with overrides. Imsak and Shuruq popup rows use the primary text color; Iqamah offsets use the secondary color. `ShowPillBorder` must be enabled for the pill border to appear.
+The mod settings editor is the authority for the exact stored key paths. Empty fields inherit the theme role described in the settings. `ShowBorder` must be on for the pill border to appear; popup border and separators have their own controls.
 
-For all preset colors and examples, see [THEMES.md](docs/guides/THEMES.md). The current Windows / System pill may need a mod reload after switching Windows light/dark mode; automatic live refresh is planned for v0.8.0.
+## Refresh interval
 
-## Advanced → Mod settings
+`Advanced → Refresh interval (hours)` accepts **1–720 hours** and defaults to **168 hours (7 days)**. For example, 24 is daily and 720 is every 30 days. Failed requests retry after one hour; matching cached schedule data may be reused after Explorer restarts.
 
-`RefreshHours`: 1–168 hours, default 24. Failed updates retry after one hour; fresh matching cache data may be reused after Explorer restarts. The mod stores cache data in Windhawk-managed mod storage.
+## Upgrade from v0.7.1
 
-## Example: change only an accent
-
-Select **Nord** as the theme, then enter `#FFBC5E` into **Advanced → Custom theme settings → Pill countdown**. Leave **Pill Iqamah** empty to inherit that accent. Clear **Pill countdown** to return to Nord's default accent.
-
-**Note:** The settings groups and JSON key paths changed since the older v0.7.0 documentation. Always use the current installed mod's settings editor as the authority for your build rather than pasting an old full JSON object.
+The v0.8.0 settings structure is new. Mosque, theme, and taskbar position are retained; other existing values are not automatically migrated and will use v0.8.0 defaults. The release does **not** bundle or run the optional PowerShell migration helper discussed during development. To carry over other preferences, save a copy of your old settings and re-enter those values in the new settings page.
