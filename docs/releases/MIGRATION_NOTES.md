@@ -1,12 +1,10 @@
-# Documentation migration notes
+# v0.8.0 documentation notes
 
-This package is a documentation refresh, not a source-code release.
+This file tracks documentation decisions for the upcoming v0.8.0 update. It is internal project context, not a user migration guide.
 
-- README rewritten as a concise, visual landing page.
-- THEMES and TROUBLESHOOTING added.
-- CONFIGURATION updated to the v0.7.1 development settings hierarchy.
-- DEVELOPMENT added to distinguish the accepted v0.7.0 baseline from dev6.9.3.
-- CHANGELOG, RELEASE_NOTES, REVIEW, and AGENT_REVIEW preserved from the uploaded files without inventing release history.
-- `LICENSE`, `.gitignore`, `.gitattributes`, and the existing canonical release C++ should remain in the repository unchanged.
-- The uploaded screenshots are included without renaming.
-- v0.7.1 documentation describes development behavior; it does not claim these features shipped in accepted v0.7.0.
+- The public Windhawk release remains v0.7.1 until v0.8.0 is accepted and published.
+- The settings structure changed. The mosque identifier, selected theme, and taskbar position are preserved; other v0.7.1 settings are not automatically migrated.
+- The optional PowerShell migration helper is not part of the v0.8.0 release package. User documentation must not imply it is bundled, hosted, or run by the mod.
+- README, configuration, troubleshooting, theme, roadmap, changelog, and release-note documents now describe the planned v0.8.0 behavior and clearly distinguish it from the current catalog release.
+- Windhawk `@version` metadata must use a version accepted by Windhawk. Internal testing labels do not belong in source metadata or public release text.
+- Historical v0.7.1 and earlier release notes remain unchanged except for the new upcoming v0.8.0 sections added ahead of them.
